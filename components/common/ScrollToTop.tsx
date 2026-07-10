@@ -37,7 +37,7 @@ const ScrollToTop = () => {
         }
       `}
     >
-      <ChevronUp className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5" />
+      <ChevronUp className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5 " />
     </button>
   );
 };
