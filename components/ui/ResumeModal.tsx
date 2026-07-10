@@ -125,7 +125,8 @@ export function ResumeModal({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-ink"
           >
-            Open in new tab <ExternalLink className="h-3.5 w-3.5" />
+            Open in new tab
+             <ExternalLink className="h-3.5 w-3.5" />
           </a>
 
           <Button
