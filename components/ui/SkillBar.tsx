@@ -29,7 +29,7 @@ export function SkillBar({ name, level, index = 0 }: SkillBarProps) {
         aria-label={`${name} proficiency`}
       >
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500"
+          className="h-full rounded-full bg-brand-600"
           initial={{ width: reduced ? `${level}%` : 0 }}
           whileInView={{ width: `${level}%` }}
           viewport={{ once: true, margin: "-40px" }}

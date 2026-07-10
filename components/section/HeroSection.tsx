@@ -90,12 +90,13 @@ export function HeroSection() {
           {/* ---------------------------------------------------------- */}
           <Reveal direction="left" delay={0.25} duration={0.9}>
             <div className="relative mx-auto w-full max-w-md">
-              {/* Rotating conic halo */}
+              {/* Rotating halo. One hue: the conic sweep runs brand → transparent
+                  → brand, so it reads as a moving glow rather than a colour wheel. */}
               <motion.div
                 aria-hidden
                 animate={{ rotate: 360 }}
                 transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-6 rounded-full bg-[conic-gradient(from_0deg,var(--color-brand-500),var(--color-accent-500),var(--color-glow-400),var(--color-brand-500))] opacity-25 blur-2xl"
+                className="absolute inset-6 rounded-full bg-[conic-gradient(from_0deg,var(--color-brand-500),transparent_35%,transparent_65%,var(--color-brand-500))] opacity-30 blur-2xl"
               />
 
               <div className="relative aspect-square overflow-hidden rounded-full border border-border bg-surface-2">

@@ -40,7 +40,7 @@ export function CertificateCard({
               onError={() => setImageFailed(true)}
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-500/10 to-accent-500/10">
+            <div className="flex h-full w-full items-center justify-center bg-brand-500/10">
               <FileText
                 className="h-10 w-10 text-brand-600/70 dark:text-brand-400/70"
                 aria-hidden

@@ -82,7 +82,7 @@ export const stats = [
   { value: 5, suffix: "+", label: "Projects shipped" },
   { value: 2, suffix: "+", label: "Years experience" },
   { value: 3, suffix: "", label: "Languages spoken" },
-  { value: 1000, suffix: "+", label: "Episodes delivered" },
+  { value: 200, suffix: "+", label: "Students Trained" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -251,7 +251,7 @@ export const timeline: TimelineEntry[] = [
     description:
       "Delivered IC3-level certification training for the Digital Program for Hotels and Homestays.",
     highlights: [
-      "Trained three batches of participants to IC3 certification standard",
+      "Trained 200+ participants to IC3 certification standard",
       "Facilitated digital literacy and productivity-tool learning, meeting GovTech's standards for the digital transformation of the hospitality sector",
     ],
   },

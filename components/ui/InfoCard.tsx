@@ -17,7 +17,7 @@ export function InfoCard({ Icon, title, subtitle, detail }: InfoCardProps) {
       interactive
       className="flex flex-col items-center p-8 text-center"
     >
-      <span className="rounded-2xl bg-gradient-to-br from-brand-500/15 to-accent-500/15 p-3.5 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
+      <span className="rounded-2xl bg-brand-500/15 p-3.5 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
         <Icon className="h-5 w-5" />
       </span>
 

@@ -75,7 +75,7 @@ export default function Navbar() {
             href={isHome ? "#home" : "/"}
             className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
           >
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 text-white transition-transform duration-500 group-hover:rotate-12">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white transition-transform duration-500 group-hover:rotate-12">
               <Image src={Logo} alt="logo" className="rounded-lg"/>
             </span>
             {profile.brand}

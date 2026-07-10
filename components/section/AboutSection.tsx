@@ -54,7 +54,7 @@ export function AboutSection({ className }: { className?: string }) {
           return (
             <StaggerItem key={id}>
               <Card spotlight interactive className="h-full p-8">
-                <span className="inline-grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-500/15 to-accent-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
+                <span className="inline-grid h-12 w-12 place-items-center rounded-2xl bg-brand-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
                   <Icon className="h-5 w-5" />
                 </span>
 

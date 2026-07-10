@@ -33,7 +33,7 @@ export function ExperienceSection({ className }: { className?: string }) {
         {awards.map(({ id, title, year, description }) => (
           <StaggerItem key={id}>
             <Card spotlight interactive className="h-full p-6">
-              <span className="inline-grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500/15 to-accent-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
+              <span className="inline-grid h-10 w-10 place-items-center rounded-xl bg-brand-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
                 <Trophy className="h-[18px] w-[18px]" />
               </span>
               <p className="mt-4 font-display text-sm font-semibold text-ink">
