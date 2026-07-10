@@ -1,26 +1,248 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by data-theme on <html>, set before paint by ThemeScript */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ */
+/* Semantic tokens — these flip between light and dark                  */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface: #ffffff;
+  --surface-2: #f5f7fa;
+  --surface-3: #e9edf3;
+  --border: #e2e8f0;
+  --ink: #0a0f1e;
+  --ink-soft: #334155;
+  --muted: #64748b;
+  --glass: rgb(255 255 255 / 0.7);
 }
 
+[data-theme="dark"] {
+  --surface: #0a0f1e;
+  --surface-2: #101728;
+  --surface-3: #1a2338;
+  --border: #223049;
+  --ink: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --muted: #8296b0;
+  --glass: rgb(16 23 40 / 0.7);
+}
+
+/* ------------------------------------------------------------------ */
+/* Design system — exposed to Tailwind as utilities                     */
+/* `inline` keeps the var() reference so semantic colors flip on theme  */
+/* ------------------------------------------------------------------ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-glass: var(--glass);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* Primary — electric blue */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
+
+  /* Accent — coral */
+  --color-accent-50: #fff1f2;
+  --color-accent-100: #ffe4e6;
+  --color-accent-200: #fecdd3;
+  --color-accent-300: #fda4af;
+  --color-accent-400: #fb7185;
+  --color-accent-500: #f43f5e;
+  --color-accent-600: #e11d48;
+  --color-accent-700: #be123c;
+  --color-accent-800: #9f1239;
+  --color-accent-900: #881337;
+
+  /* Glow — sky, used sparingly for highlights */
+  --color-glow-300: #7dd3fc;
+  --color-glow-400: #38bdf8;
+  --color-glow-500: #0ea5e9;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  --radius-4xl: 2rem;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-aurora: aurora 18s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-blink: blink 1.1s step-end infinite;
+
+  @keyframes aurora {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(6%, -8%, 0) scale(1.12);
+    }
+    66% {
+      transform: translate3d(-6%, 6%, 0) scale(0.94);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/* Base                                                                 */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    transition: background-color 0.3s var(--ease-out-expo),
+      color 0.3s var(--ease-out-expo);
+  }
+
+  ::selection {
+    background: var(--color-brand-500);
+    color: #fff;
+  }
+
+  /* Themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface-2);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-500);
+    border-radius: 9999px;
+    border: 3px solid var(--surface-2);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-500);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                            */
+/* ------------------------------------------------------------------ */
+@utility text-gradient {
+  /* sRGB fallback. Interpolating blue→coral in sRGB desaturates through grey
+     at the midpoint, so this is the acceptable-but-duller version. */
+  background-image: linear-gradient(
+    110deg,
+    var(--color-brand-600) 0%,
+    var(--color-glow-400) 55%,
+    var(--color-accent-500) 92%
+  );
+  /* Preferred: OKLCH holds chroma across the hue sweep, so the midpoint stays
+     vivid instead of going muddy. Declared second — browsers that don't parse
+     `in oklch` keep the fallback above rather than dropping the gradient
+     entirely (which would render the clipped text invisible). */
+  background-image: linear-gradient(
+    110deg in oklch,
+    var(--color-brand-600) 0%,
+    var(--color-glow-400) 45%,
+    var(--color-accent-500) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Animated 1px gradient border via the double-background trick */
+@utility border-gradient {
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--surface), var(--surface)),
+    linear-gradient(
+      130deg,
+      var(--color-brand-500),
+      var(--color-glow-400),
+      var(--color-accent-400)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+}
+
+/* Fades a marquee out at both edges */
+@utility mask-edges {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Accessibility: honor the OS "reduce motion" setting                  */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
