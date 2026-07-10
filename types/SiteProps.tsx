@@ -4,6 +4,8 @@
  * content module, which would import the icons straight back.
  */
 
+import { StaticImageData } from "next/image";
+
 export type NavItem = { id: string; label: string };
 
 export type SocialIcon =
@@ -34,6 +36,18 @@ export type Project = {
   url: string;
   repoUrl?: string;
   featured?: boolean;
+};
+
+export type Certificate = {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  /** PDF under `public/certificates/`. */
+  fileUrl: string;
+  img?: StaticImageData;
+  /** Preview image under `public/certificates/`. Falls back to a PDF glyph. */
+  thumbnailUrl?: StaticImageData;
 };
 
 export type TimelineEntry = {

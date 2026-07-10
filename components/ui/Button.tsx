@@ -40,6 +40,8 @@ type ButtonAsButton = BaseProps &
 type ButtonAsLink = BaseProps & {
   href: string;
   external?: boolean;
+  /** Forces a plain <a download>. Pass the filename to offer the browser. */
+  download?: string | boolean;
 };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
@@ -64,12 +66,28 @@ export function Button({
 
   if ("href" in rest && typeof rest.href === "string") {
     const external = "external" in rest && rest.external;
+    const download = "download" in rest ? rest.download : undefined;
+    const targetProps = external
+      ? { target: "_blank", rel: "noopener noreferrer" }
+      : null;
+
+    // A download points at a static file, not a route — skip the router.
+    if (download !== undefined) {
+      return (
+        <a
+          href={rest.href}
+          download={download}
+          className={classes}
+          {...targetProps}
+        >
+          {children}
+          {icon}
+        </a>
+      );
+    }
+
     return (
-      <Link
-        href={rest.href}
-        className={classes}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : null)}
-      >
+      <Link href={rest.href} className={classes} {...targetProps}>
         {children}
         {icon}
       </Link>

@@ -6,7 +6,9 @@
  * date of birth. Those belong on identity documents, not a public, indexable page.
  */
 
+import { iBEST } from "@/assets";
 import type {
+  Certificate,
   NavItem,
   Project,
   SkillGroup,
@@ -15,6 +17,7 @@ import type {
 } from "@/types/SiteProps";
 
 export type {
+  Certificate,
   NavItem,
   Project,
   SkillGroup,
@@ -42,7 +45,8 @@ export const profile = {
   bioLong:
     "Although my formal background began in Commerce, my transition into software engineering is fueled by a relentless work ethic and a self-taught spirit. I believe professional-grade programming is driven by curiosity and discipline rather than a degree. Having learned the frontend ecosystem through intensive training and real-world project delivery at iBEST — national platforms for GovTech, an e-learning product used across Bhutan, and work for international clients — I am proof that dedication and a passion for logic can bridge any gap.",
   avatar: "/myImage.png",
-  resumeUrl: "/resume.pdf", // TODO: export the .docx to PDF and drop it in /public
+  resumeUrl: "/Resume_Pema_Lepcha.docx",
+  resumeFileName: "Resume_Pema_Lepcha.docx",
   location: "Babesa, Thimphu",
   timezone: "GMT+6 (BT)",
   availability: "Open to freelance & full-time",
@@ -58,6 +62,7 @@ export const navItems: NavItem[] = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
+  { id: "certificates", label: "Certificates" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -356,6 +361,42 @@ export const awards = [
     description:
       "Completed an intensive three-month program specialising in modern web development and full-stack architecture.",
   },
+];
+
+/* ---------------------------------------------------------------- */
+/* Certificates                                                      */
+/*                                                                   */
+/* To add one: drop `<id>.pdf` into `public/certificates/`, add an   */
+/* entry below, and — optionally — a preview image beside the PDF.   */
+/* Without `thumbnailUrl` the card shows a PDF glyph instead.        */
+/* The section hides itself when this array is empty.                */
+/* ---------------------------------------------------------------- */
+export const certificates: Certificate[] = [
+  // Add `thumbnailUrl: "/certificates/<id>.png"` once the image exists. Point
+  // it at a missing file and the card still works, but the browser logs a 404.
+  {
+    id: "ic3",
+    title: "IC3 Digital Literacy Certification",
+    issuer: "GovTech Digital Program",
+    year: "2023",
+    fileUrl: "/certificates/ic3.pdf",
+    thumbnailUrl: iBEST,
+  },
+  // Uncomment each entry once its PDF is in `public/certificates/`.
+  // {
+  //   id: "fullstack",
+  //   title: "Certified Full-Stack Developer",
+  //   issuer: "iBEST Technologies",
+  //   year: "2024",
+  //   fileUrl: "/certificates/fullstack.pdf",
+  // },
+  // {
+  //   id: "employee",
+  //   title: "Employee of the Month",
+  //   issuer: "Hotel Druk, Phuentsholing",
+  //   year: "Sept 2023",
+  //   fileUrl: "/certificates/employee.pdf",
+  // },
 ];
 
 /* ---------------------------------------------------------------- */

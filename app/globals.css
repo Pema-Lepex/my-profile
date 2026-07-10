@@ -231,6 +231,30 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Résumé preview — docx-preview renders fixed-width A4 pages.          */
+/* Keep them on white paper and let narrow screens scroll sideways.     */
+/* ------------------------------------------------------------------ */
+[data-resume-viewport] {
+  overflow-x: auto;
+}
+
+/* ResumeModal sets `zoom` on .docx-wrapper inline — Lightning CSS drops the
+   property from this stylesheet, so it cannot be declared here. */
+[data-resume-viewport] .docx-wrapper {
+  background: transparent;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+[data-resume-viewport] .docx-wrapper > section.docx {
+  margin: 0 auto;
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.35);
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #000;
+}
+
+/* ------------------------------------------------------------------ */
 /* Accessibility: honor the OS "reduce motion" setting                  */
 /* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {

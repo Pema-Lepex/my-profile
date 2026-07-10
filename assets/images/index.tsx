@@ -1,0 +1,1 @@
+export { default as iBEST } from "./iBEST.png";

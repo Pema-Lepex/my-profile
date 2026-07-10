@@ -10,3 +10,7 @@ export { ThemeToggle } from "./ThemeToggle";
 export { SocialLinks } from "./SocialLinks";
 export { TimelineItem } from "./TimelineItem";
 export { Aurora } from "./Aurora";
+export { Modal } from "./Modal";
+export { ResumeModal } from "./ResumeModal";
+export { CertificateCard } from "./CertificateCard";
+export { CertificateModal } from "./CertificateModal";

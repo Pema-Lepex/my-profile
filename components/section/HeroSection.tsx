@@ -1,15 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowDown, Download, Mail } from "lucide-react";
+import { ArrowDown, FileText, Mail } from "lucide-react";
 import { profile, stats, techMarquee } from "@/assets/content/common/SiteContent";
 import { useTypewriter } from "@/utils/hooks";
-import { Badge, Button, Marquee, SocialLinks } from "@/components/ui";
+import { Badge, Button, Marquee, ResumeModal, SocialLinks } from "@/components/ui";
 import { Counter, Magnetic, Reveal } from "@/components/motion";
 
 export function HeroSection() {
   const typed = useTypewriter(profile.roles);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
     <section
@@ -68,13 +70,13 @@ export function HeroSection() {
 
                 <Magnetic>
                   <Button
-                    href={profile.resumeUrl}
                     variant="secondary"
                     size="lg"
-                    external
-                    icon={<Download className="h-4 w-4" />}
+                    onClick={() => setResumeOpen(true)}
+                    aria-haspopup="dialog"
+                    icon={<FileText className="h-4 w-4" />}
                   >
-                    Résumé
+                    Resume
                   </Button>
                 </Magnetic>
 
@@ -179,6 +181,13 @@ export function HeroSection() {
       >
         Scroll <ArrowDown className="h-3.5 w-3.5" />
       </motion.a>
+
+      <ResumeModal
+        open={resumeOpen}
+        onClose={() => setResumeOpen(false)}
+        fileUrl={profile.resumeUrl}
+        fileName={profile.resumeFileName}
+      />
     </section>
   );
 }
