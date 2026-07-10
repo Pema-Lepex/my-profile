@@ -29,7 +29,7 @@ export function SkillsSection({ className }: { className?: string }) {
             <StaggerItem key={label}>
               <Card spotlight interactive className="h-full p-8">
                 <div className="flex items-center gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-500/15 to-accent-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-500/15 text-brand-600 ring-1 ring-brand-500/20 dark:text-brand-400">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>

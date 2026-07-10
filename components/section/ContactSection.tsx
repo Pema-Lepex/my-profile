@@ -281,7 +281,7 @@ export function ContactSection({ className }: { className?: string }) {
                 {status === "error" && (
                   <p
                     role="alert"
-                    className="flex items-start gap-2 rounded-2xl border border-accent-500/25 bg-accent-500/5 px-4 py-3 text-sm text-accent-600 dark:text-accent-400"
+                    className="flex items-start gap-2 rounded-2xl border border-danger-500/25 bg-danger-500/5 px-4 py-3 text-sm text-danger-600 dark:text-danger-400"
                   >
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     {error}

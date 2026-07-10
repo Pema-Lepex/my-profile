@@ -57,7 +57,7 @@ export function TimelineItem({ entry, last }: TimelineItemProps) {
             <li key={item} className="flex gap-3 text-sm text-muted">
               <span
                 aria-hidden
-                className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-brand-500 to-accent-500"
+                className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600"
               />
               {item}
             </li>

@@ -82,7 +82,7 @@ export const stats = [
   { value: 5, suffix: "+", label: "Projects shipped" },
   { value: 2, suffix: "+", label: "Years experience" },
   { value: 3, suffix: "", label: "Languages spoken" },
-  { value: 200, suffix: "+", label: "Students" },
+  { value: 200, suffix: "+", label: "Students Trained" },
 ];
 
 /* ---------------------------------------------------------------- */
