@@ -31,7 +31,7 @@ export type {
 /* ---------------------------------------------------------------- */
 export const profile = {
   name: "Pema Lepcha",
-  brand: "Lepex.dev",
+  brand: "pema.dev",
   // Rotates through the typewriter in the hero
   roles: [
     "Software Developer",
@@ -72,7 +72,7 @@ export const socials: Social[] = [
   { label: "LinkedIn", href: "https://linkedin.com/in/", icon: "linkedin" },
   { label: "Facebook", href: "https://facebook.com/", icon: "facebook" },
   { label: "Instagram", href: "https://instagram.com/", icon: "instagram" },
-  { label: "Email", href: "mailto:pemalepchalepex@gmail.com", icon: "mail" },
+  { label: "Email", href: "mailto:pemalepchapema@gmail.com", icon: "mail" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -94,10 +94,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "code",
     blurb: "The fundamentals I reach for every day.",
     skills: [
-      { name: "JavaScript (ES6+)", level: 92 },
+      { name: "JavaScript", level: 92 },
       { name: "TypeScript", level: 85 },
-      { name: "HTML5", level: 95 },
-      { name: "CSS3", level: 93 },
+      { name: "HTML", level: 95 },
+      { name: "CSS", level: 93 },
     ],
   },
   {
@@ -403,7 +403,7 @@ export const certificates: Certificate[] = [
 /* Contact                                                           */
 /* ---------------------------------------------------------------- */
 export const contact = {
-  email: "pemalepchalepex@gmail.com",
+  email: "pemalepchapema@gmail.com",
   emailNote: "I usually reply within a day",
   location: "Babesa, Thimphu",
   locationNote: "Bhutan 🇧🇹",

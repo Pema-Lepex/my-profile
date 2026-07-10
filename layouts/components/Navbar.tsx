@@ -10,6 +10,8 @@ import { useActiveSection } from "@/utils/hooks";
 import { Button, SocialLinks, ThemeToggle } from "@/components/ui";
 import { cn } from "@/utils/helpers/cn";
 import { NAV_LINKS, SECTION_IDS, type NavLink } from "./NavMenuList";
+import Image from "next/image";
+import Logo from "../../public/Logo.png"
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -74,7 +76,7 @@ export default function Navbar() {
             className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
           >
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 text-white transition-transform duration-500 group-hover:rotate-12">
-              <Sparkles className="h-4 w-4" />
+              <Image src={Logo} alt="logo" className="rounded-lg"/>
             </span>
             {profile.brand}
           </Link>

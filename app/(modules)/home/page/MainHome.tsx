@@ -16,7 +16,7 @@ const MainHome: React.FC = () => {
       <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
-      <CertificatesSection />
+      {/* <CertificatesSection /> */}
       <ContactSection />
     </>
   );
