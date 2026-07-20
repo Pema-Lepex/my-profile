@@ -3,7 +3,6 @@ import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 import { profile } from "@/assets/content/common/SiteContent";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import { ThemeScript } from "@/utils/helpers/ThemeScript";
-import favicon from "../public/myfavicon.png";
 import "./globals.css";
 
 const inter = Inter({
@@ -47,15 +46,16 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description: DESCRIPTION,
-    images: [profile.avatar],
+    images: [profile.avatar.src],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [profile.avatar],
+    images: [profile.avatar.src],
   },
-  icons:{icon: favicon.src}
+  // No `icons` entry: `app/icon.png` is the Next 16 file convention and emits
+  // the <link rel="icon"> tag automatically.
 };
 
 // `themeColor` belongs on the viewport export, not on metadata. Each entry

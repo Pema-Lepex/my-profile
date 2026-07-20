@@ -11,7 +11,7 @@ import { Button, SocialLinks, ThemeToggle } from "@/components/ui";
 import { cn } from "@/utils/helpers/cn";
 import { NAV_LINKS, SECTION_IDS, type NavLink } from "./NavMenuList";
 import Image from "next/image";
-import Logo from "../../public/Logo.png"
+import { brandMark } from "@/assets";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -76,7 +76,7 @@ export default function Navbar() {
             className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
           >
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white transition-transform duration-500 group-hover:rotate-12">
-              <Image src={Logo} alt="logo" className="rounded-lg"/>
+              <Image src={brandMark} alt="logo" className="rounded-lg"/>
             </span>
             {profile.brand}
           </Link>

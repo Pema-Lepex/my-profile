@@ -7,7 +7,8 @@
  */
 
 import {
-  iBEST,
+  dgmLogo,
+  ibestLogo,
   ic3Apr03,
   ic3Apr14,
   ic3Apr24,
@@ -18,6 +19,10 @@ import {
   ic3May06,
   ic3May06Group,
   ic3May26,
+  mindfulnessGuide,
+  pemaPortrait,
+  portfolioPreview,
+  rpisLogo,
 } from "@/assets";
 import type {
   Certificate,
@@ -58,7 +63,7 @@ export const profile = {
   bio: "I build responsive, scalable web applications with React and Next.js. At iBEST Technologies I architect dynamic frontends, streamline data fetching with GraphQL and Apollo Client, and turn complex requirements into interfaces that feel simple to use.",
   bioLong:
     "Although my formal background began in Commerce, my transition into software engineering is fueled by a relentless work ethic and a self-taught spirit. I believe professional-grade programming is driven by curiosity and discipline rather than a degree. Having learned the frontend ecosystem through intensive training and real-world project delivery at iBEST — national platforms for GovTech, an e-learning product used across Bhutan, and work for international clients — I am proof that dedication and a passion for logic can bridge any gap.",
-  avatar: "/myImage.png",
+  avatar: pemaPortrait,
   resumeUrl: "/Resume_Pema_Lepcha.docx",
   resumeFileName: "Resume_Pema_Lepcha.docx",
   location: "Babesa, Thimphu",
@@ -173,7 +178,7 @@ export const projects: Project[] = [
     category: "GovTech",
     description:
       "Created data-driven, responsive interfaces for national hazard monitoring, turning complex environmental data into accessible tools for government use.",
-    imageUrl: "/logo_dpt.webp",
+    image: dgmLogo,
     altText: "Department of Geology & Mines logo",
     tags: ["Next.js", "GraphQL", "Data Viz", "Tailwind"],
     url: "https://geohazards.systems.gov.bt/",
@@ -196,7 +201,7 @@ export const projects: Project[] = [
     category: "GovTech · E-commerce",
     description:
       "An e-commerce ecosystem featuring Bhutan NDI integration and the Berms Payment Gateway. I built the public storefront, cart logic, and an admin panel for inventory and Role-Based Access Control (RBAC).",
-    imageUrl: "/rpis.png",
+    image: rpisLogo,
     altText: "Royal Project Initiative System logo",
     tags: ["React", "Bhutan NDI", "RBAC", "Payments"],
     url: "#",
@@ -216,7 +221,7 @@ export const projects: Project[] = [
     category: "EdTech · In-house",
     description:
       "Bhutan's pioneering online learning platform, built to transform learning and skilling in Bhutan and beyond. Educare Skill lets learners master Dzongkha through more than 1,000 engaging, curriculum-aligned episodes.",
-    imageUrl: "/iBEST.png",
+    image: ibestLogo,
     altText: "Educare Skill logo",
     tags: ["Next.js", "GraphQL", "Apollo Client"],
     url: "#",
@@ -236,7 +241,7 @@ export const projects: Project[] = [
     category: "Platform · In-house",
     description:
       "The administrative core of the Educare Skill ecosystem, managing high-volume data and user permissions. I implemented dynamic role assignment, membership management, and an integrated media system handling video and imagery across web and mobile.",
-    imageUrl: "/iBEST.png",
+    image: ibestLogo,
     altText: "iBEST logo",
     tags: ["React", "Redux", "Media Pipeline"],
     url: "#",
@@ -255,7 +260,7 @@ export const projects: Project[] = [
     category: "Client · Australia",
     description:
       "Engineered a high-performance frontend for an international wellness app, focusing on clean code and smooth UI transitions for a global audience.",
-    imageUrl: "/programming.png",
+    image: mindfulnessGuide,
     altText: "MindFullness Guide project",
     tags: ["React", "Next.js", "Animation"],
     url: "#",
@@ -274,7 +279,7 @@ export const projects: Project[] = [
     category: "Personal",
     description:
       "A design-system-driven personal site built on Next.js and Tailwind v4, with scroll-linked animations, a token-based theming layer, and a fully reusable component library.",
-    imageUrl: "/images.png",
+    image: portfolioPreview,
     altText: "Portfolio screenshot",
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
     url: "#",
@@ -553,7 +558,7 @@ export const certificates: Certificate[] = [
     issuer: "GovTech Digital Program",
     year: "2023",
     fileUrl: "/certificates/ic3.pdf",
-    thumbnailUrl: iBEST,
+    thumbnailUrl: ibestLogo,
   },
   // Uncomment each entry once its PDF is in `public/certificates/`.
   // {

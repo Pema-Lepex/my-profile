@@ -26,7 +26,7 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
     year,
     category,
     description,
-    imageUrl,
+    image,
     altText,
     tags,
     url,
@@ -64,7 +64,7 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
             need a light plate to stay legible in dark mode. */}
         <div className="relative z-10 grid place-items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
           <Image
-            src={imageUrl}
+            src={image}
             alt={altText}
             width={featured ? 130 : 100}
             height={featured ? 130 : 100}

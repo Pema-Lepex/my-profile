@@ -30,7 +30,8 @@ export type Project = {
   year: string;
   category: string;
   description: string;
-  imageUrl: string;
+  /** Static import from `@/assets`, not a `public/` path — see assets/images. */
+  image: StaticImageData;
   altText: string;
   tags: string[];
   url: string;

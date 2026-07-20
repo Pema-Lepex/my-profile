@@ -104,7 +104,9 @@ export function HeroSection() {
                   src={profile.avatar}
                   alt={profile.name}
                   fill
-                  priority
+                  // `priority` is deprecated in Next 16. This is the hero LCP
+                  // image, so preloading it in <head> is the intent.
+                  preload
                   sizes="(max-width: 1024px) 80vw, 420px"
                   className="object-cover object-top"
                 />
