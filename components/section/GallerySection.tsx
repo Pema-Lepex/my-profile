@@ -42,7 +42,9 @@ export function GallerySection({
   const range = formatPhotoRange(photos.at(-1)!.date, photos[0].date);
 
   return (
-    <Section id="gallery" className={className}>
+    // Tinted so the home page keeps alternating: Experience (plain) → Gallery
+    // (tinted) → Certificates (plain) → Contact (tinted).
+    <Section id="gallery" tinted className={className}>
       <SectionHeading
         eyebrow="Training"
         title="Teaching what I use"
