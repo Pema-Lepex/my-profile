@@ -3,6 +3,7 @@ import {
   CertificatesSection,
   ContactSection,
   ExperienceSection,
+  GallerySection,
   HeroSection,
   ProjectsSection,
   SkillsSection,
@@ -16,6 +17,7 @@ const MainHome: React.FC = () => {
       <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
+      <GallerySection />
       {/* <CertificatesSection /> */}
       <ContactSection />
     </>

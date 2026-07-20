@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { GithubIcon } from "@/assets";
 import type { Project } from "@/assets/content/common/SiteContent";
 import { cn } from "@/utils/helpers/cn";
@@ -13,13 +13,35 @@ type ProjectCardProps = {
   project: Project;
   /** Featured cards span two columns and use a larger image well. */
   featured?: boolean;
+  /**
+   * Adds the role/client/duration meta row and the highlights list. Used on
+   * the /projects route; the home page preview stays deliberately short.
+   */
+  detailed?: boolean;
 };
 
-export function ProjectCard({ project, featured }: ProjectCardProps) {
-  const { title, year, category, description, imageUrl, altText, tags, url, repoUrl } =
-    project;
+export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
+  const {
+    title,
+    year,
+    category,
+    description,
+    imageUrl,
+    altText,
+    tags,
+    url,
+    repoUrl,
+    role,
+    client,
+    duration,
+    highlights,
+  } = project;
 
   const isLive = url !== "#";
+  const meta = detailed
+    ? [role, client, duration].filter((v): v is string => Boolean(v))
+    : [];
+  const showHighlights = detailed && highlights && highlights.length > 0;
 
   return (
     <Card
@@ -64,9 +86,36 @@ export function ProjectCard({ project, featured }: ProjectCardProps) {
           {title}
         </h3>
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
+        <p
+          className={cn(
+            "mt-3 text-sm leading-relaxed text-muted",
+            // On the preview the description carries the card's height; with
+            // highlights below it, the list should take the slack instead.
+            !showHighlights && "flex-1",
+          )}
+        >
           {description}
         </p>
+
+        {meta.length > 0 && (
+          <p className="mt-4 font-mono text-[11px] leading-relaxed text-ink-soft">
+            {meta.join("  ·  ")}
+          </p>
+        )}
+
+        {showHighlights && (
+          <ul className="mt-4 flex-1 space-y-2">
+            {highlights.map((item) => (
+              <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-muted">
+                <Check
+                  aria-hidden
+                  className="mt-1 h-3.5 w-3.5 shrink-0 text-brand-600 dark:text-brand-400"
+                />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="mt-5 flex flex-wrap gap-2">
           {tags.map((tag) => (

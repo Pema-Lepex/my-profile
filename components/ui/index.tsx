@@ -14,3 +14,5 @@ export { Modal } from "./Modal";
 export { ResumeModal } from "./ResumeModal";
 export { CertificateCard } from "./CertificateCard";
 export { CertificateModal } from "./CertificateModal";
+export { GalleryCard } from "./GalleryCard";
+export { GalleryLightbox } from "./GalleryLightbox";

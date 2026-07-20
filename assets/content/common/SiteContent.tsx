@@ -6,9 +6,22 @@
  * date of birth. Those belong on identity documents, not a public, indexable page.
  */
 
-import { iBEST } from "@/assets";
+import {
+  iBEST,
+  ic3Apr03,
+  ic3Apr14,
+  ic3Apr24,
+  ic3Jun01,
+  ic3Jun10,
+  ic3Jun23,
+  ic3Mar24,
+  ic3May06,
+  ic3May06Group,
+  ic3May26,
+} from "@/assets";
 import type {
   Certificate,
+  GalleryPhoto,
   NavItem,
   Project,
   SkillGroup,
@@ -18,6 +31,7 @@ import type {
 
 export type {
   Certificate,
+  GalleryPhoto,
   NavItem,
   Project,
   SkillGroup,
@@ -62,6 +76,7 @@ export const navItems: NavItem[] = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
+  { id: "gallery", label: "Gallery" },
   { id: "certificates", label: "Certificates" },
   { id: "contact", label: "Contact" },
 ];
@@ -145,6 +160,11 @@ export const techMarquee = [
 /* ---------------------------------------------------------------- */
 /* Projects                                                          */
 /* ---------------------------------------------------------------- */
+/*
+ * The home page shows only the `showcase: true` entries behind a "View all
+ * projects" link; /projects renders the whole array with the detail fields
+ * (`role`, `duration`, `client`, `highlights`) that the home cards omit.
+ */
 export const projects: Project[] = [
   {
     id: "geo-hazards",
@@ -158,6 +178,16 @@ export const projects: Project[] = [
     tags: ["Next.js", "GraphQL", "Data Viz", "Tailwind"],
     url: "https://geohazards.systems.gov.bt/",
     featured: true,
+    showcase: true,
+    role: "Frontend Developer",
+    client: "Department of Geology & Mines",
+    // TODO: add `duration` once you've checked the dates — left out rather
+    // than guessed, since it reads as a claim on a portfolio.
+    highlights: [
+      "Built responsive, data-driven interfaces for national hazard monitoring",
+      "Rendered complex environmental datasets as visualisations non-specialists can read",
+      "Delivered against government accessibility and browser-support requirements",
+    ],
   },
   {
     id: "rpis",
@@ -171,6 +201,13 @@ export const projects: Project[] = [
     tags: ["React", "Bhutan NDI", "RBAC", "Payments"],
     url: "#",
     featured: true,
+    showcase: true,
+    role: "Frontend Developer",
+    highlights: [
+      "Built the public storefront and the full cart and checkout flow",
+      "Integrated Bhutan NDI for identity and the Berms Payment Gateway for settlement",
+      "Shipped an admin panel covering inventory and Role-Based Access Control",
+    ],
   },
   {
     id: "educare",
@@ -183,6 +220,14 @@ export const projects: Project[] = [
     altText: "Educare Skill logo",
     tags: ["Next.js", "GraphQL", "Apollo Client"],
     url: "#",
+    showcase: true,
+    role: "Frontend Developer",
+    client: "iBEST Technologies",
+    highlights: [
+      "Built the learner-facing frontend for 1,000+ curriculum-aligned Dzongkha episodes",
+      "Wired up content delivery with GraphQL and Apollo Client",
+      "Tuned the episode browsing experience for low-bandwidth connections",
+    ],
   },
   {
     id: "educare-cms",
@@ -195,6 +240,13 @@ export const projects: Project[] = [
     altText: "iBEST logo",
     tags: ["React", "Redux", "Media Pipeline"],
     url: "#",
+    role: "Frontend Developer",
+    client: "iBEST Technologies",
+    highlights: [
+      "Implemented dynamic role assignment and membership management",
+      "Built an integrated media system handling video and imagery for web and mobile",
+      "Kept the admin UI responsive against high-volume datasets",
+    ],
   },
   {
     id: "mindfullness",
@@ -207,6 +259,13 @@ export const projects: Project[] = [
     altText: "MindFullness Guide project",
     tags: ["React", "Next.js", "Animation"],
     url: "#",
+    role: "Frontend Developer",
+    client: "Private client, Australia",
+    highlights: [
+      "Engineered a high-performance frontend for an international audience",
+      "Built smooth UI transitions without sacrificing Core Web Vitals",
+      "Worked asynchronously across a five-hour time difference",
+    ],
   },
   {
     id: "portfolio",
@@ -220,6 +279,120 @@ export const projects: Project[] = [
     tags: ["Next.js", "Tailwind v4", "Framer Motion"],
     url: "#",
     repoUrl: "https://github.com/",
+    role: "Designer & Developer",
+    highlights: [
+      "Token-based theming layer driving light and dark from one source",
+      "Scroll-linked animations that respect prefers-reduced-motion",
+      "A reusable component library rather than one-off page markup",
+    ],
+  },
+];
+
+/* ---------------------------------------------------------------- */
+/* Training gallery — IC3 certification cohorts                      */
+/*                                                                   */
+/* Dates come from the original camera filenames, so they are the    */
+/* real session dates. Venues are read off signage in the photos     */
+/* where it was legible and left general where it wasn't — correct   */
+/* any `location` you know precisely. Photos sort newest-first by    */
+/* `date`, so adding a cohort is just one more entry here.           */
+/* ---------------------------------------------------------------- */
+export const galleryPhotos: GalleryPhoto[] = [
+  {
+    id: "jun-23",
+    src: ic3Jun23,
+    date: "2026-06-23",
+    title: "Certification day",
+    location: "Thimphu",
+    altText:
+      "Around twenty-five IC3 participants in Bhutanese national dress holding their certificates on the steps of a traditional building",
+    note: "The final cohort of the spring intake, photographed after the closing assessment.",
+  },
+  {
+    id: "jun-10",
+    src: ic3Jun10,
+    date: "2026-06-10",
+    title: "An all-women cohort",
+    location: "Thimphu",
+    altText:
+      "A cohort of women participants in kira holding IC3 certificates of completion on a wooden veranda",
+    note: "Every participant in this group passed the certification on the first attempt.",
+  },
+  {
+    id: "jun-01",
+    src: ic3Jun01,
+    date: "2026-06-01",
+    title: "Hospitality staff intake",
+    location: "Thimphu",
+    altText:
+      "Hotel and homestay staff, several in chef whites, holding certificates on the stone steps of a traditional Bhutanese building",
+    note: "Front-of-house and kitchen staff trained together under the Digital Program for Hotels and Homestays.",
+  },
+  {
+    id: "may-26",
+    src: ic3May26,
+    date: "2026-05-26",
+    title: "Closing session",
+    location: "Thimphu",
+    altText:
+      "Participants in national dress holding IC3 certificates in front of a wooden lodge",
+  },
+  {
+    id: "may-06-group",
+    src: ic3May06Group,
+    date: "2026-05-06",
+    title: "Between sessions",
+    location: "Thimphu",
+    altText:
+      "A close-up group photo of five smiling participants taken during a break in training",
+    note: "Not every good photo is a formal one.",
+  },
+  {
+    id: "may-06",
+    src: ic3May06,
+    date: "2026-05-06",
+    title: "Certificates handed out",
+    location: "Thimphu",
+    altText:
+      "Two rows of participants holding certificates of completion on a covered wooden deck",
+  },
+  {
+    id: "apr-24",
+    src: ic3Apr24,
+    date: "2026-04-24",
+    title: "Mid-programme cohort",
+    location: "Thimphu",
+    altText:
+      "Participants holding IC3 certificates inside a bright covered training space",
+  },
+  {
+    id: "apr-14",
+    src: ic3Apr14,
+    date: "2026-04-14",
+    title: "Cohort at iBEST Institute",
+    location: "iBEST Institute, Thimphu",
+    altText:
+      "Participants in gho and kira holding certificates outside the iBEST Institute building",
+  },
+  {
+    id: "apr-03",
+    src: ic3Apr03,
+    date: "2026-04-03",
+    title: "A full house",
+    location: "iBEST Institute, Thimphu",
+    altText:
+      "A large cohort of nearly thirty participants holding certificates outside the iBEST Institute",
+    note: "One of the largest single groups I trained across the programme.",
+  },
+  {
+    id: "mar-24",
+    src: ic3Mar24,
+    date: "2026-03-24",
+    title: "The first cohort",
+    location: "Thimphu",
+    altText:
+      "The first group of IC3 participants holding their certificates under a red and blue canopy",
+    note: "Where the programme started — the group that shaped how I taught every session after it.",
   },
 ];
 

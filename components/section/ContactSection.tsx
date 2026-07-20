@@ -235,7 +235,7 @@ export function ContactSection({ className }: { className?: string }) {
                       required
                       disabled={submitting}
                       autoComplete="name"
-                      placeholder="Jane Doe"
+                      placeholder="Your name"
                       className={FIELD}
                     />
                   </div>
@@ -254,7 +254,7 @@ export function ContactSection({ className }: { className?: string }) {
                       required
                       disabled={submitting}
                       autoComplete="email"
-                      placeholder="jane@example.com"
+                      placeholder="email@example.com"
                       className={FIELD}
                     />
                   </div>
