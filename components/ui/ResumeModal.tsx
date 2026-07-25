@@ -8,9 +8,7 @@ import { Modal } from "./Modal";
 type ResumeModalProps = {
   open: boolean;
   onClose: () => void;
-  /** Path to the .docx under /public */
   fileUrl: string;
-  /** Filename offered to the browser on download */
   fileName: string;
 };
 
@@ -25,16 +23,12 @@ export function ResumeModal({
   const [status, setStatus] = useState<Status>("loading");
   const viewportRef = useRef<HTMLDivElement>(null);
 
-  // Reset to the spinner each time the dialog opens. Adjusting state during
-  // render beats a setState-in-effect: no cascading second render.
   const [wasOpen, setWasOpen] = useState(open);
   if (open !== wasOpen) {
     setWasOpen(open);
     if (open) setStatus("loading");
   }
 
-  // Fetch + render the .docx. docx-preview touches `window`, so it is imported
-  // lazily here rather than at module scope.
   useEffect(() => {
     if (!open) return;
 
@@ -74,8 +68,6 @@ export function ResumeModal({
     };
   }, [open, fileUrl]);
 
-  // The .docx renders at a fixed A4 width. Zoom it to fit narrow viewports so
-  // the page is readable without sideways scrolling. Never zoom past 100%.
   useEffect(() => {
     if (!open || status !== "ready") return;
 
@@ -84,7 +76,6 @@ export function ResumeModal({
     const page = container?.querySelector<HTMLElement>("section.docx");
     if (!container || !wrapper || !page) return;
 
-    // offsetWidth ignores `zoom`, so this stays the intrinsic page width.
     const pageWidth = page.offsetWidth;
     if (!pageWidth) return;
 
@@ -141,8 +132,6 @@ export function ResumeModal({
         </>
       }
     >
-      {/* Preview viewport — the .docx renders onto its own white page, so
-          this area stays light in both themes. */}
       <div className="relative flex-1 overflow-y-auto overscroll-contain bg-surface-3 p-4 sm:p-8">
         {status === "loading" && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">

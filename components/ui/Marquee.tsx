@@ -3,14 +3,9 @@ import { cn } from "@/utils/helpers/cn";
 type MarqueeProps = {
   items: readonly string[];
   className?: string;
-  /** Seconds for one full loop. Lower is faster. */
   speed?: number;
 };
 
-/**
- * Infinitely scrolling row of labels. The list is rendered twice and the
- * track translates by exactly -50%, so the seam is invisible.
- */
 export function Marquee({ items, className, speed = 40 }: MarqueeProps) {
   return (
     <div className={cn("mask-edges overflow-hidden", className)}>

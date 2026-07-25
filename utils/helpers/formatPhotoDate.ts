@@ -1,10 +1,3 @@
-/**
- * "2026-06-23" → "23 June 2026".
- *
- * Parsed as UTC deliberately: `new Date("2026-06-23")` is already UTC midnight,
- * so reading it back with local getters would shift the date by a day for
- * anyone west of Greenwich.
- */
 export function formatPhotoDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -14,10 +7,6 @@ export function formatPhotoDate(iso: string): string {
   });
 }
 
-/**
- * "2026-03-24" + "2026-06-23" → "Mar–Jun 2026". Collapses to a single month
- * when both ends land in one, and carries both years when they differ.
- */
 export function formatPhotoRange(fromIso: string, toIso: string): string {
   const month = (iso: string) =>
     new Date(iso).toLocaleDateString("en-GB", {

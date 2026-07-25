@@ -10,7 +10,6 @@ import { Modal } from "./Modal";
 
 type GalleryLightboxProps = {
   photos: GalleryPhoto[];
-  /** Index of the open photo, or null when the dialog is closed. */
   index: number | null;
   onIndexChange: (index: number) => void;
   onClose: () => void;
@@ -42,7 +41,6 @@ export function GalleryLightbox({
   );
 
   if (!current) {
-    // Keep the dialog mounted so AnimatePresence can play the exit animation.
     return (
       <Modal open={false} onClose={onClose} label="photo" title="">
         <div />
@@ -51,8 +49,6 @@ export function GalleryLightbox({
   }
 
   const multiple = photos.length > 1;
-  // `index` is non-null past the guard above, but narrowing doesn't survive
-  // into the JSX callbacks — derive the position from the photo instead.
   const position = photos.indexOf(current) + 1;
 
   return (
@@ -98,8 +94,6 @@ export function GalleryLightbox({
     >
       <div className="relative grid flex-1 place-items-center overflow-hidden bg-surface-3">
         <Image
-          // `key` restarts the blur-up transition when the photo changes;
-          // without it React reuses the <img> and the new source pops in.
           key={current.id}
           src={current.src}
           alt={current.altText}

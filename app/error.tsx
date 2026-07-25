@@ -4,11 +4,6 @@ import { useEffect } from "react";
 import { RotateCw } from "lucide-react";
 import { Aurora, Button } from "@/components/ui";
 
-/**
- * Replaces the Pages Router's `_error.tsx`. The App Router routes 404s to
- * `not-found.tsx`, so this boundary only ever sees runtime errors — there is
- * no status code to map to a message.
- */
 export default function Error({
   error,
   reset,

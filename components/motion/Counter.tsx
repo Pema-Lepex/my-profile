@@ -11,7 +11,6 @@ type CounterProps = {
   className?: string;
 };
 
-/** Counts up from zero to `to` the first time it scrolls into view. */
 export function Counter({
   to,
   suffix = "",
@@ -36,8 +35,6 @@ export function Counter({
     return () => controls.stop();
   }, [inView, to, duration, reduced]);
 
-  // With reduced motion there is nothing to count, so read the target straight
-  // off the prop rather than storing it in state from the effect.
   const display = reduced ? to : value;
 
   return (

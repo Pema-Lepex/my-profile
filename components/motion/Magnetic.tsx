@@ -11,11 +11,9 @@ import { useRef, type ReactNode } from "react";
 type MagneticProps = {
   children: ReactNode;
   className?: string;
-  /** How far the element leans toward the cursor, 0–1. */
   strength?: number;
 };
 
-/** Pulls its child gently toward the cursor while hovered. */
 export function Magnetic({
   children,
   className,

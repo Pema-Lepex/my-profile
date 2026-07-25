@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { cn } from "@/utils/helpers/cn";
 
-/** `true` only after hydration — createPortal needs a real document. */
 const subscribeToNothing = () => () => {};
 const useIsMounted = () =>
   useSyncExternalStore(
@@ -18,23 +17,16 @@ const useIsMounted = () =>
 type ModalProps = {
   open: boolean;
   onClose: () => void;
-  /** Accessible name for the dialog. */
   label: string;
   title: ReactNode;
   subtitle?: ReactNode;
-  /** Buttons rendered in the header, left of the close button. */
   actions?: ReactNode;
   footer?: ReactNode;
   children: ReactNode;
   panelClassName?: string;
-  /** Extra key handler, e.g. arrow-key navigation. Escape is already handled. */
   onKeyDown?: (e: KeyboardEvent) => void;
 };
 
-/**
- * Portal dialog: backdrop click and Escape close it, body scroll is locked
- * while it is open, and focus moves to the close button on open.
- */
 export function Modal({
   open,
   onClose,
@@ -50,9 +42,6 @@ export function Modal({
   const mounted = useIsMounted();
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  // Escape, scroll lock, and initial focus. Deliberately kept free of
-  // `onKeyDown`: re-running this effect while open would capture the already
-  // locked "hidden" as `previousOverflow` and never restore page scroll.
   useEffect(() => {
     if (!open) return;
 
@@ -71,7 +60,6 @@ export function Modal({
     };
   }, [open, onClose]);
 
-  // Caller-supplied keys re-subscribe freely — this effect owns no state.
   useEffect(() => {
     if (!open || !onKeyDown) return;
     document.addEventListener("keydown", onKeyDown);

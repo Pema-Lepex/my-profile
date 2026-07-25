@@ -41,11 +41,6 @@ export function ContactSection({ className }: { className?: string }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  /**
-   * Posts straight to Web3Forms, which relays the message to `contact.email`.
-   * The access key is public by design — it only authorises submissions to the
-   * inbox it was issued for, and can't be used to read anything.
-   */
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -72,11 +67,9 @@ export function ContactSection({ className }: { className?: string }) {
           name: data.get("name"),
           email: data.get("email"),
           message: data.get("message"),
-          // Lets you hit "Reply" in Gmail and reach the sender directly.
           replyto: data.get("email"),
           subject: `Portfolio enquiry from ${data.get("name")}`,
           from_name: `${profile.brand} contact form`,
-          // Honeypot: bots fill hidden fields, humans can't see this one.
           botcheck: data.get("botcheck"),
         }),
       });
@@ -109,7 +102,6 @@ export function ContactSection({ className }: { className?: string }) {
         description="Have a project in mind, or just want to say hello? I'm always here to chat."
       />
 
-      {/* Contact details */}
       <Stagger className="grid gap-6 md:grid-cols-3">
         <StaggerItem>
           <InfoCard
@@ -163,7 +155,6 @@ export function ContactSection({ className }: { className?: string }) {
         </StaggerItem>
       </Stagger>
 
-      {/* Message form */}
       <Reveal delay={0.15} className="mx-auto mt-16 max-w-2xl">
         <Card className="p-8 sm:p-10">
           <h3 className="font-display text-2xl font-semibold text-ink">
@@ -210,7 +201,6 @@ export function ContactSection({ className }: { className?: string }) {
                 exit={{ opacity: 0 }}
                 className="mt-8 space-y-5"
               >
-                {/* Honeypot — visually hidden, never focusable by a human */}
                 <input
                   type="checkbox"
                   name="botcheck"

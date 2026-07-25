@@ -17,8 +17,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // A standalone route renders only its own section, so seed the scroll-spy
-  // with that id — "/projects" opens with Projects already highlighted.
   const active = useActiveSection(
     SECTION_IDS,
     isHome ? "home" : pathname.slice(1),
@@ -27,8 +25,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // The home page stacks every section, so the nav scrolls between anchors.
-  // Anywhere else those anchors don't exist, and the nav navigates instead.
   const hrefFor = (link: NavLink) => (isHome ? `#${link.id}` : link.href);
 
   useEffect(() => {
@@ -38,7 +34,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -46,7 +41,6 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // Close the drawer on Escape.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -70,7 +64,6 @@ export default function Navbar() {
               : "border border-transparent",
           )}
         >
-          {/* Brand */}
           <Link
             href={isHome ? "#home" : "/"}
             className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
@@ -81,7 +74,6 @@ export default function Navbar() {
             {profile.brand}
           </Link>
 
-          {/* Desktop links */}
           <ul className="hidden items-center gap-1 md:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.id}>
@@ -111,7 +103,6 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Actions */}
           <div className="flex items-center gap-2">
             <ThemeToggle className="hidden sm:grid" />
             <Button
@@ -135,7 +126,6 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {open && (
           <motion.div

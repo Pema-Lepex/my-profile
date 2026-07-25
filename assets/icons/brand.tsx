@@ -1,10 +1,5 @@
 import type { SVGProps } from "react";
 
-/**
- * Brand marks, hand-rolled because lucide-react v1 removed them.
- * All use `currentColor` and inherit sizing from the parent font-size / classes.
- */
-
 type IconProps = SVGProps<SVGSVGElement>;
 
 const base = {

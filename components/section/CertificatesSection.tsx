@@ -15,10 +15,6 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 
 type CertificatesSectionProps = {
   className?: string;
-  /**
-   * "preview" — the home page: a link through to /certificates, without the
-   * documents themselves. "full" — the /certificates route: cards and viewer.
-   */
   variant?: "preview" | "full";
 };
 
@@ -33,8 +29,6 @@ export function CertificatesSection({
   const isPreview = variant === "preview";
   const count = certificates.length;
   const issuers = new Set(certificates.map((c) => c.issuer)).size;
-  // `year` is a free-text field ("2024", "Sept 2023"), so sort on the trailing
-  // four digits rather than the whole string.
   const latest = certificates
     .map((c) => c.year)
     .sort((a, b) => (a.match(/\d{4}/)?.[0] ?? "").localeCompare(b.match(/\d{4}/)?.[0] ?? ""))
@@ -86,7 +80,6 @@ export function CertificatesSection({
               ))}
             </dl>
 
-            {/* Names only — the documents themselves live on /certificates. */}
             <ul className="mx-auto mt-8 max-w-md space-y-1.5">
               {certificates.map((certificate) => (
                 <li

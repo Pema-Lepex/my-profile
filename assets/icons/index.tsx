@@ -12,7 +12,6 @@ export { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon };
 
 export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
-/** Maps the string keys used in `data/site.ts` onto real components. */
 export const socialIcons: Record<SocialIcon, IconComponent> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,

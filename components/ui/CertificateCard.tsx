@@ -28,7 +28,6 @@ export function CertificateCard({
         aria-label={`View ${title} certificate`}
         className="flex h-full w-full flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
       >
-        {/* Preview */}
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2">
           {showImage ? (
             <Image
@@ -48,7 +47,6 @@ export function CertificateCard({
             </div>
           )}
 
-          {/* Hover veil */}
           <div className="absolute inset-0 flex items-center justify-center bg-ink/50 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
             <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 font-mono text-xs font-medium text-ink shadow-lg">
               <Eye className="h-3.5 w-3.5" /> View
@@ -60,7 +58,6 @@ export function CertificateCard({
           </span>
         </div>
 
-        {/* Meta */}
         <div className="flex flex-1 flex-col p-5">
           <p className="font-display text-sm font-semibold leading-snug text-ink">
             {title}

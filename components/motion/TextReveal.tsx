@@ -6,12 +6,10 @@ import { cn } from "@/utils/helpers/cn";
 type TextRevealProps = {
   text: string;
   className?: string;
-  /** Seconds between each word. */
   stagger?: number;
   delay?: number;
 };
 
-/** Reveals a headline word by word, each rising out of a clipped line. */
 export function TextReveal({
   text,
   className,

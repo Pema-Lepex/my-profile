@@ -4,12 +4,10 @@ import { motion, useReducedMotion } from "motion/react";
 
 type SkillBarProps = {
   name: string;
-  /** Percentage, 0–100. */
   level: number;
   index?: number;
 };
 
-/** A labelled proficiency meter that fills when it scrolls into view. */
 export function SkillBar({ name, level, index = 0 }: SkillBarProps) {
   const reduced = useReducedMotion();
 

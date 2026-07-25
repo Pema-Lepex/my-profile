@@ -21,7 +21,6 @@ export function AboutSection({ className }: { className?: string }) {
         description={profile.tagline}
       />
 
-      {/* Long-form bio */}
       <div className="mx-auto max-w-3xl">
         <Reveal>
           <p className="text-lg leading-relaxed text-ink-soft">
@@ -47,7 +46,6 @@ export function AboutSection({ className }: { className?: string }) {
         </Reveal>
       </div>
 
-      {/* Services */}
       <Stagger className="mt-20 grid gap-6 md:grid-cols-3">
         {services.map(({ id, icon, title, description }) => {
           const Icon = SERVICE_ICONS[icon];

@@ -5,7 +5,6 @@ import { Badge } from "./Badge";
 
 type TimelineItemProps = {
   entry: TimelineEntry;
-  /** Hides the connector line and drops the bottom gap on the final item. */
   last?: boolean;
 };
 
@@ -14,11 +13,7 @@ export function TimelineItem({ entry, last }: TimelineItemProps) {
   const Icon = kind === "education" ? GraduationCap : Briefcase;
 
   return (
-    // Each item is rendered inside its own wrapper, so `last:` variants would
-    // match every item. The gap is driven by the explicit `last` prop instead.
     <div className={cn("relative flex gap-6", last ? "pb-0" : "pb-12")}>
-      {/* Connector — absolute so it can span this item's bottom padding
-          and meet the next item's icon. */}
       {!last && (
         <span
           aria-hidden
@@ -26,7 +21,6 @@ export function TimelineItem({ entry, last }: TimelineItemProps) {
         />
       )}
 
-      {/* Rail */}
       <span className="relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border bg-surface text-brand-600 dark:text-brand-400">
         <Icon className="h-[18px] w-[18px]" />
         {current && (
@@ -37,7 +31,6 @@ export function TimelineItem({ entry, last }: TimelineItemProps) {
         )}
       </span>
 
-      {/* Content */}
       <div className="flex-1 pt-1">
         <div className="flex flex-wrap items-center gap-3">
           <h3 className="font-display text-lg font-semibold text-ink">{role}</h3>

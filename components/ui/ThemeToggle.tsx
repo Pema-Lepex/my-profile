@@ -5,7 +5,6 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/utils/hooks";
 import { cn } from "@/utils/helpers/cn";
 
-/** Sun/moon switch. Renders an inert placeholder until mounted to avoid a hydration mismatch. */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggle, mounted } = useTheme();
 

@@ -22,7 +22,6 @@ export function ExperienceSection({ className }: { className?: string }) {
         ))}
       </div>
 
-      {/* Awards */}
       <Reveal className="mx-auto mt-24 max-w-3xl">
         <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">
           Awards &amp; Recognition

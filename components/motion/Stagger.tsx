@@ -6,16 +6,11 @@ import type { ElementType, ReactNode } from "react";
 type StaggerProps = {
   children: ReactNode;
   className?: string;
-  /** Seconds between each child animating in. */
   stagger?: number;
   delay?: number;
   as?: ElementType;
 };
 
-/**
- * Wrap a list in <Stagger> and each direct child in <StaggerItem> to have
- * them cascade in one after another when the group scrolls into view.
- */
 export function Stagger({
   children,
   className,

@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useSpring } from "motion/react";
 
-/** A thin gradient bar pinned to the top of the page, tracking scroll depth. */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

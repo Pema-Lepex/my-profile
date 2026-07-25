@@ -20,9 +20,6 @@ export function HeroSection() {
     >
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
-          {/* ---------------------------------------------------------- */}
-          {/* Copy                                                        */}
-          {/* ---------------------------------------------------------- */}
           <div>
             <Reveal direction="none" duration={0.8}>
               {profile.available && (
@@ -38,7 +35,6 @@ export function HeroSection() {
               </h1>
             </Reveal>
 
-            {/* Typewriter role — reserve a line box so nothing shifts */}
             <Reveal delay={0.2}>
               <p className="mt-6 flex min-h-[2rem] items-center font-mono text-base text-ink-soft sm:text-lg">
                 <span className="mr-2 text-brand-500">&gt;</span>
@@ -85,13 +81,8 @@ export function HeroSection() {
             </Reveal>
           </div>
 
-          {/* ---------------------------------------------------------- */}
-          {/* Portrait                                                    */}
-          {/* ---------------------------------------------------------- */}
           <Reveal direction="left" delay={0.25} duration={0.9}>
             <div className="relative mx-auto w-full max-w-md">
-              {/* Rotating halo. One hue: the conic sweep runs brand → transparent
-                  → brand, so it reads as a moving glow rather than a colour wheel. */}
               <motion.div
                 aria-hidden
                 animate={{ rotate: 360 }}
@@ -104,15 +95,12 @@ export function HeroSection() {
                   src={profile.avatar}
                   alt={profile.name}
                   fill
-                  // `priority` is deprecated in Next 16. This is the hero LCP
-                  // image, so preloading it in <head> is the intent.
                   preload
                   sizes="(max-width: 1024px) 80vw, 420px"
                   className="object-cover object-top"
                 />
               </div>
 
-              {/* Floating chips */}
               <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -147,9 +135,6 @@ export function HeroSection() {
           </Reveal>
         </div>
 
-        {/* ------------------------------------------------------------ */}
-        {/* Stats                                                         */}
-        {/* ------------------------------------------------------------ */}
         <Reveal delay={0.2} className="mt-20">
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-4">
             {stats.map(({ value, suffix, label }) => (
@@ -168,13 +153,11 @@ export function HeroSection() {
           </dl>
         </Reveal>
 
-        {/* Tech marquee */}
         <Reveal delay={0.3} className="mt-10">
           <Marquee items={techMarquee} />
         </Reveal>
       </div>
 
-      {/* Scroll cue */}
       <motion.a
         href="#about"
         aria-label="Scroll to about section"

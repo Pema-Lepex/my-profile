@@ -9,10 +9,7 @@ import { formatPhotoDate } from "@/utils/helpers/formatPhotoDate";
 type GalleryCardProps = {
   photo: GalleryPhoto;
   onOpen: () => void;
-  /** Feature tiles run wider, so they get a wider aspect ratio to match.
-      The column span itself lives on the grid child in GallerySection. */
   wide?: boolean;
-  /** Position in the grid, used for the loading strategy. */
   index: number;
 };
 
@@ -34,19 +31,15 @@ export function GalleryCard({ photo, onOpen, wide, index }: GalleryCardProps) {
         src={photo.src}
         alt={photo.altText}
         placeholder="blur"
-        // The grid is 1 column on mobile, 2 on sm, 3 on lg inside a 6xl shell.
         sizes={
           wide
             ? "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 768px"
             : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
         }
-        // The first row is likely above the fold; the rest can wait.
         loading={index < 3 ? "eager" : "lazy"}
         className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
       />
 
-      {/* Scrim: always faintly present so the caption stays legible, and
-          deepened on hover. Sits under the caption, over the photo. */}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100"
@@ -66,7 +59,6 @@ export function GalleryCard({ photo, onOpen, wide, index }: GalleryCardProps) {
         <h3 className="mt-1.5 font-display text-lg font-semibold tracking-tight text-white">
           {photo.title}
         </h3>
-        {/* Revealed on hover — keeps the resting grid calm. */}
         <p className="mt-1 max-h-0 overflow-hidden text-sm text-white/75 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:max-h-12 group-hover:opacity-100">
           {photo.location}
         </p>

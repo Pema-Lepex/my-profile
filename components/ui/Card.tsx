@@ -5,13 +5,10 @@ import { Spotlight } from "@/components/motion";
 type CardProps = {
   children: ReactNode;
   className?: string;
-  /** Adds the cursor-following radial glow. */
   spotlight?: boolean;
-  /** Lifts the card and brightens its border on hover. */
   interactive?: boolean;
 };
 
-/** The base surface every panel on the site is built from. */
 export function Card({
   children,
   className,

@@ -11,12 +11,7 @@ import { Badge } from "./Badge";
 
 type ProjectCardProps = {
   project: Project;
-  /** Featured cards span two columns and use a larger image well. */
   featured?: boolean;
-  /**
-   * Adds the role/client/duration meta row and the highlights list. Used on
-   * the /projects route; the home page preview stays deliberately short.
-   */
   detailed?: boolean;
 };
 
@@ -49,7 +44,6 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
       interactive
       className={cn("flex h-full flex-col", featured && "lg:col-span-2")}
     >
-      {/* Image well */}
       <div
         className={cn(
           "relative flex items-center justify-center overflow-hidden rounded-t-3xl border-b border-border bg-surface-2",
@@ -60,8 +54,6 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgb(37_99_235_/_0.18),transparent_60%)]"
         />
-        {/* Logos are supplied as transparent PNGs with dark artwork, so they
-            need a light plate to stay legible in dark mode. */}
         <div className="relative z-10 grid place-items-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
           <Image
             src={image}
@@ -76,7 +68,6 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
         </span>
       </div>
 
-      {/* Body */}
       <div className="flex flex-1 flex-col p-6">
         <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">
           {category}
@@ -89,8 +80,6 @@ export function ProjectCard({ project, featured, detailed }: ProjectCardProps) {
         <p
           className={cn(
             "mt-3 text-sm leading-relaxed text-muted",
-            // On the preview the description carries the card's height; with
-            // highlights below it, the list should take the slack instead.
             !showHighlights && "flex-1",
           )}
         >

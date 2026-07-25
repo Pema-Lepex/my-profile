@@ -7,14 +7,9 @@ import { cn } from "@/utils/helpers/cn";
 type SpotlightProps = {
   children: ReactNode;
   className?: string;
-  /** Radius of the glow, in pixels. */
   size?: number;
 };
 
-/**
- * A card surface with a soft radial glow that follows the cursor.
- * The glow is a sibling layer, so it never repaints the content beneath it.
- */
 export function Spotlight({ children, className, size = 380 }: SpotlightProps) {
   const mouseX = useMotionValue(-9999);
   const mouseY = useMotionValue(-9999);

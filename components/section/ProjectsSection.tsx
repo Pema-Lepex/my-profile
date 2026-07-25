@@ -7,11 +7,6 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 
 type ProjectsSectionProps = {
   className?: string;
-  /**
-   * "preview" — the home page: the `showcase` projects only, with a link out
-   * to the full list. "full" — the /projects route: every project, each with
-   * its role, client, and highlights.
-   */
   variant?: "preview" | "full";
 };
 
@@ -21,8 +16,6 @@ export function ProjectsSection({
 }: ProjectsSectionProps) {
   const isPreview = variant === "preview";
 
-  // Falling back to the first few keeps the home page populated if nobody
-  // has flagged anything as `showcase` yet.
   const showcased = projects.filter((project) => project.showcase);
   const visible = isPreview
     ? showcased.length > 0
@@ -50,8 +43,6 @@ export function ProjectsSection({
             <ProjectCard
               project={project}
               detailed={!isPreview}
-              // The two-column span only reads as intentional among the short
-              // preview cards; in the detailed list every card is already tall.
               featured={isPreview && project.featured}
             />
           </StaggerItem>

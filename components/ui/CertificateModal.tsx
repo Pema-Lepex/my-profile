@@ -14,7 +14,6 @@ import { Modal } from "./Modal";
 
 type CertificateModalProps = {
   certificates: Certificate[];
-  /** Index of the open certificate, or null when the dialog is closed. */
   index: number | null;
   onIndexChange: (index: number) => void;
   onClose: () => void;
@@ -29,11 +28,6 @@ export function CertificateModal({
   const open = index !== null;
   const current = open ? certificates[index] : undefined;
 
-  // "checking"  — confirming the PDF exists before embedding it
-  // "missing"   — the file 404s; embedding it would render the site's own
-  //               404 page inside the viewer, which reads as a broken preview
-  // "stalled"   — the iframe never reported a load. Some browsers (notably
-  //               iOS Safari) refuse to render PDFs inline and fire nothing.
   type Phase = "checking" | "loading" | "loaded" | "stalled" | "missing";
   const [phase, setPhase] = useState<Phase>("checking");
 
@@ -47,17 +41,12 @@ export function CertificateModal({
 
   const fileUrl = current?.fileUrl;
 
-  // Restart the check whenever the dialog shows a different file. Adjusting
-  // state during render keeps `phase` in step with `fileUrl` — an effect would
-  // let one frame paint with the previous certificate's phase.
   const [checkedUrl, setCheckedUrl] = useState(fileUrl);
   if (fileUrl && fileUrl !== checkedUrl) {
     setCheckedUrl(fileUrl);
     setPhase("checking");
   }
 
-  // A 404 response still fires the iframe's `load` event, so the file has to be
-  // verified *before* it is embedded rather than raced against onLoad.
   useEffect(() => {
     if (!open || !fileUrl || phase !== "checking") return;
 
@@ -90,7 +79,6 @@ export function CertificateModal({
   );
 
   if (!current) {
-    // Keep the dialog mounted so AnimatePresence can play the exit animation.
     return (
       <Modal open={false} onClose={onClose} label="certificate" title="">
         <div />
@@ -159,11 +147,7 @@ export function CertificateModal({
         </>
       }
     >
-      {/* min-height keeps the panel from collapsing when no iframe renders */}
       <div className="relative min-h-[70svh] flex-1 overflow-hidden bg-surface-3">
-        {/* Sits *behind* the iframe. A browser that renders the PDF paints
-            over it; one that cannot leaves this showing. Never covers the
-            preview, so a missing load event can't hide the document. */}
         {phase !== "loaded" && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
             {phase === "missing" && (
@@ -202,10 +186,6 @@ export function CertificateModal({
           </div>
         )}
 
-        {/* Browsers render PDFs natively. `key` forces a reload when the
-            certificate changes, and #view=FitH fits the page to the width.
-            Rendered only once the file is known to exist — a 404 response
-            would otherwise embed the site's own 404 page and fire onLoad. */}
         {phase !== "checking" && phase !== "missing" && (
           <iframe
             key={current.fileUrl}

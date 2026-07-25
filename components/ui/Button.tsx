@@ -28,7 +28,6 @@ type BaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
-  /** Trailing element, usually an icon. */
   icon?: ReactNode;
 };
 
@@ -40,13 +39,11 @@ type ButtonAsButton = BaseProps &
 type ButtonAsLink = BaseProps & {
   href: string;
   external?: boolean;
-  /** Forces a plain <a download>. Pass the filename to offer the browser. */
   download?: string | boolean;
 };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-/** Renders a <button> normally, or a <Link> when `href` is passed. */
 export function Button({
   children,
   variant = "primary",
@@ -71,7 +68,6 @@ export function Button({
       ? { target: "_blank", rel: "noopener noreferrer" }
       : null;
 
-    // A download points at a static file, not a route — skip the router.
     if (download !== undefined) {
       return (
         <a

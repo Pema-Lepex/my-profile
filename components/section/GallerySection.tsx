@@ -16,10 +16,6 @@ import { formatPhotoRange } from "@/utils/helpers/formatPhotoDate";
 
 type GallerySectionProps = {
   className?: string;
-  /**
-   * "preview" — the home page: a link through to /gallery, deliberately
-   * without the photos. "full" — the /gallery route: the grid and lightbox.
-   */
   variant?: "preview" | "full";
 };
 
@@ -29,8 +25,6 @@ export function GallerySection({
 }: GallerySectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // Newest first, so a new cohort added to the content file leads the grid
-  // regardless of where in the array it was pasted.
   const photos = useMemo(
     () => [...galleryPhotos].sort((a, b) => b.date.localeCompare(a.date)),
     [],
@@ -42,8 +36,6 @@ export function GallerySection({
   const range = formatPhotoRange(photos.at(-1)!.date, photos[0].date);
 
   return (
-    // Tinted so the home page keeps alternating: Experience (plain) → Gallery
-    // (tinted) → Certificates (plain) → Contact (tinted).
     <Section id="gallery" tinted className={className}>
       <SectionHeading
         eyebrow="Training"
@@ -110,8 +102,6 @@ export function GallerySection({
             {photos.map((photo, i) => (
               <StaggerItem
                 key={photo.id}
-                // The lead photo and the middle of the grid break the rhythm
-                // so ten same-shaped tiles don't read as a contact sheet.
                 className={i === 0 || i === 5 ? "sm:col-span-2" : undefined}
               >
                 <GalleryCard

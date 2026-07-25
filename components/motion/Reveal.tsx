@@ -16,20 +16,13 @@ const OFFSET: Record<Direction, { x: number; y: number }> = {
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  /** Which way the element travels in from. */
   direction?: Direction;
   delay?: number;
   duration?: number;
-  /** Render as a different tag — useful for <li>, <section>, etc. */
   as?: ElementType;
-  /** Replay the animation every time it scrolls into view. */
   repeat?: boolean;
 };
 
-/**
- * Fades and slides its children in when they scroll into view.
- * Collapses to a plain fade when the user prefers reduced motion.
- */
 export function Reveal({
   children,
   className,

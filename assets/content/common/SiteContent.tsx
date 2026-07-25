@@ -1,10 +1,3 @@
-/**
- * Single source of truth for every piece of copy on the site.
- * Edit this file and the whole page updates — no component changes needed.
- *
- * Sourced from Resume_Pema_Lepcha.docx. Deliberately excluded: CID number and
- * date of birth. Those belong on identity documents, not a public, indexable page.
- */
 
 import {
   dgmLogo,
@@ -45,13 +38,9 @@ export type {
   TimelineEntry,
 } from "@/types/SiteProps";
 
-/* ---------------------------------------------------------------- */
-/* Profile                                                           */
-/* ---------------------------------------------------------------- */
 export const profile = {
   name: "Pema Lepcha",
   brand: "pema.dev",
-  // Rotates through the typewriter in the hero
   roles: [
     "Software Developer",
     "Frontend Engineer",
@@ -72,9 +61,6 @@ export const profile = {
   available: true,
 } as const;
 
-/* ---------------------------------------------------------------- */
-/* Navigation                                                        */
-/* ---------------------------------------------------------------- */
 export const navItems: NavItem[] = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
@@ -87,7 +73,6 @@ export const navItems: NavItem[] = [
 ];
 
 export const socials: Social[] = [
-  // TODO: replace the bare domains with your actual profile URLs.
   { label: "GitHub", href: "https://github.com/", icon: "github" },
   { label: "LinkedIn", href: "https://linkedin.com/in/", icon: "linkedin" },
   { label: "Facebook", href: "https://facebook.com/", icon: "facebook" },
@@ -95,9 +80,6 @@ export const socials: Social[] = [
   { label: "Email", href: "mailto:pemalepchapema@gmail.com", icon: "mail" },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Hero stats — the number animates up when scrolled into view       */
-/* ---------------------------------------------------------------- */
 export const stats = [
   { value: 5, suffix: "+", label: "Projects shipped" },
   { value: 2, suffix: "+", label: "Years experience" },
@@ -105,9 +87,6 @@ export const stats = [
   { value: 200, suffix: "+", label: "Students Trained" },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Skills                                                            */
-/* ---------------------------------------------------------------- */
 export const skillGroups: SkillGroup[] = [
   {
     label: "Languages",
@@ -155,21 +134,12 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-/** Scrolls infinitely in the hero marquee. */
 export const techMarquee = [
   "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS",
   "GraphQL", "Apollo Client", "Redux", "REST APIs", "Node.js",
   "Git", "HTML5", "CSS3", "Bhutan NDI",
 ];
 
-/* ---------------------------------------------------------------- */
-/* Projects                                                          */
-/* ---------------------------------------------------------------- */
-/*
- * The home page shows only the `showcase: true` entries behind a "View all
- * projects" link; /projects renders the whole array with the detail fields
- * (`role`, `duration`, `client`, `highlights`) that the home cards omit.
- */
 export const projects: Project[] = [
   {
     id: "geo-hazards",
@@ -186,8 +156,6 @@ export const projects: Project[] = [
     showcase: true,
     role: "Frontend Developer",
     client: "Department of Geology & Mines",
-    // TODO: add `duration` once you've checked the dates — left out rather
-    // than guessed, since it reads as a claim on a portfolio.
     highlights: [
       "Built responsive, data-driven interfaces for national hazard monitoring",
       "Rendered complex environmental datasets as visualisations non-specialists can read",
@@ -293,15 +261,6 @@ export const projects: Project[] = [
   },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Training gallery — IC3 certification cohorts                      */
-/*                                                                   */
-/* Dates come from the original camera filenames, so they are the    */
-/* real session dates. Venues are read off signage in the photos     */
-/* where it was legible and left general where it wasn't — correct   */
-/* any `location` you know precisely. Photos sort newest-first by    */
-/* `date`, so adding a cohort is just one more entry here.           */
-/* ---------------------------------------------------------------- */
 export const galleryPhotos: GalleryPhoto[] = [
   {
     id: "jun-23",
@@ -401,9 +360,6 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Experience & education timeline                                   */
-/* ---------------------------------------------------------------- */
 export const timeline: TimelineEntry[] = [
   {
     id: "ibest",
@@ -487,9 +443,6 @@ export const timeline: TimelineEntry[] = [
   },
 ];
 
-/* ---------------------------------------------------------------- */
-/* What I do — service cards                                         */
-/* ---------------------------------------------------------------- */
 export const services = [
   {
     id: "web",
@@ -514,9 +467,6 @@ export const services = [
   },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Awards                                                            */
-/* ---------------------------------------------------------------- */
 export const awards = [
   {
     id: "employee",
@@ -541,17 +491,7 @@ export const awards = [
   },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Certificates                                                      */
-/*                                                                   */
-/* To add one: drop `<id>.pdf` into `public/certificates/`, add an   */
-/* entry below, and — optionally — a preview image beside the PDF.   */
-/* Without `thumbnailUrl` the card shows a PDF glyph instead.        */
-/* The section hides itself when this array is empty.                */
-/* ---------------------------------------------------------------- */
 export const certificates: Certificate[] = [
-  // Add `thumbnailUrl: "/certificates/<id>.png"` once the image exists. Point
-  // it at a missing file and the card still works, but the browser logs a 404.
   {
     id: "ic3",
     title: "IC3 Digital Literacy Certification",
@@ -560,32 +500,13 @@ export const certificates: Certificate[] = [
     fileUrl: "/certificates/ic3.pdf",
     thumbnailUrl: ibestLogo,
   },
-  // Uncomment each entry once its PDF is in `public/certificates/`.
-  // {
-  //   id: "fullstack",
-  //   title: "Certified Full-Stack Developer",
-  //   issuer: "iBEST Technologies",
-  //   year: "2024",
-  //   fileUrl: "/certificates/fullstack.pdf",
-  // },
-  // {
-  //   id: "employee",
-  //   title: "Employee of the Month",
-  //   issuer: "Hotel Druk, Phuentsholing",
-  //   year: "Sept 2023",
-  //   fileUrl: "/certificates/employee.pdf",
-  // },
 ];
 
-/* ---------------------------------------------------------------- */
-/* Contact                                                           */
-/* ---------------------------------------------------------------- */
 export const contact = {
   email: "pemalepchapema@gmail.com",
   emailNote: "I usually reply within a day",
   location: "Babesa, Thimphu",
   locationNote: "Bhutan 🇧🇹",
-  // Phone is intentionally omitted from the public site to deter scrapers.
   languages: ["Dzongkha", "English", "Lotshomkha"],
   languagesNote: "Happy to talk in any of these",
 };

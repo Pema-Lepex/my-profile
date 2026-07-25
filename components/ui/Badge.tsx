@@ -7,7 +7,6 @@ type BadgeProps = {
   variant?: "default" | "brand" | "dot";
 };
 
-/** Small pill label. `dot` adds a pulsing indicator, for "available" states. */
 export function Badge({ children, className, variant = "default" }: BadgeProps) {
   return (
     <span

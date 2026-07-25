@@ -9,7 +9,6 @@ type InfoCardProps = {
   detail: ReactNode;
 };
 
-/** Icon + label + value. Used for the contact grid. */
 export function InfoCard({ Icon, title, subtitle, detail }: InfoCardProps) {
   return (
     <Card

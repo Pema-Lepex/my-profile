@@ -6,11 +6,9 @@ type SectionProps = {
   id: string;
   children: ReactNode;
   className?: string;
-  /** Tints the section background to separate it from its neighbours. */
   tinted?: boolean;
 };
 
-/** A full-width page section with a consistent max width and vertical rhythm. */
 export function Section({ id, children, className, tinted }: SectionProps) {
   return (
     <section

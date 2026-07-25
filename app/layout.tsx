@@ -27,7 +27,6 @@ const TITLE = `${profile.name} — ${profile.roles[0]}`;
 const DESCRIPTION = `${profile.name} — ${profile.roles[0]} based in ${profile.location}. ${profile.tagline}`;
 
 export const metadata: Metadata = {
-  // Resolves the relative OG image below against a real origin.
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
@@ -54,12 +53,8 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [profile.avatar.src],
   },
-  // No `icons` entry: `app/icon.png` is the Next 16 file convention and emits
-  // the <link rel="icon"> tag automatically.
 };
 
-// `themeColor` belongs on the viewport export, not on metadata. Each entry
-// matches the surface token in that theme, so browser chrome blends in.
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
@@ -73,9 +68,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // The font variables must live on an element that also sets font-sans, so
-    // descendants inherit the loaded family rather than the fallback.
-    // suppressHydrationWarning: ThemeScript writes data-theme onto <html>.
     <html
       lang="en"
       suppressHydrationWarning
