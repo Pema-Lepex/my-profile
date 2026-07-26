@@ -56,74 +56,80 @@ export default function Navbar() {
           scrolled ? "py-3" : "py-5",
         )}
       >
-        <nav
-          className={cn(
-            "mx-4 flex max-w-6xl items-center justify-between rounded-full px-5 py-2.5 transition-all duration-500 sm:mx-6 lg:mx-auto",
-            scrolled
-              ? "glass border border-border shadow-lg shadow-black/5"
-              : "border border-transparent",
-          )}
-        >
-          <Link
-            href={isHome ? "#home" : "/"}
-            className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
+        {/* Same gutters and max width as Section, so the bar lines up with the
+            page content instead of running to the screen edge */}
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <nav
+            className={cn(
+              "flex items-center justify-between gap-3 rounded-full px-5 py-2.5 transition-all duration-500",
+              scrolled
+                ? "glass border border-border shadow-lg shadow-black/5"
+                : "border border-transparent",
+            )}
           >
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white transition-transform duration-500 group-hover:rotate-12">
-              <Image src={brandMark} alt="logo" className="rounded-lg"/>
-            </span>
-            {profile.brand}
-          </Link>
-
-          <ul className="hidden items-center gap-1 md:flex">
-            {NAV_LINKS.map((link) => (
-              <li key={link.id}>
-                <Link
-                  href={hrefFor(link)}
-                  className={cn(
-                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    active === link.id
-                      ? "text-ink"
-                      : "text-muted hover:text-ink",
-                  )}
-                >
-                  {active === link.id && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-surface-3"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 32,
-                      }}
-                    />
-                  )}
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center gap-2">
-            <ThemeToggle className="hidden sm:grid" />
-            <Button
-              href={isHome ? "#contact" : "/contact"}
-              size="sm"
-              className="hidden md:inline-flex"
+            <Link
+              href={isHome ? "#home" : "/"}
+              className="group flex shrink-0 items-center gap-2 font-display text-base font-semibold tracking-tight text-ink"
             >
-              Let&rsquo;s talk
-            </Button>
+              <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white transition-transform duration-500 group-hover:rotate-12">
+                <Image src={brandMark} alt="logo" className="rounded-lg" />
+              </span>
+              {profile.brand}
+            </Link>
 
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2 text-ink md:hidden"
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </nav>
+            {/* Eight links only fit once there is desk-width room — below lg
+                they live in the drawer instead */}
+            <ul className="hidden items-center gap-0.5 lg:flex xl:gap-1">
+              {NAV_LINKS.map((link) => (
+                <li key={link.id}>
+                  <Link
+                    href={hrefFor(link)}
+                    className={cn(
+                      "relative block whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium transition-colors xl:px-4 xl:text-sm",
+                      active === link.id
+                        ? "text-ink"
+                        : "text-muted hover:text-ink",
+                    )}
+                  >
+                    {active === link.id && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 -z-10 rounded-full bg-surface-3"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex shrink-0 items-center gap-2">
+              <ThemeToggle className="hidden sm:grid" />
+              <Button
+                href={isHome ? "#contact" : "/contact"}
+                size="sm"
+                className="hidden whitespace-nowrap lg:inline-flex"
+              >
+                Let&rsquo;s talk
+              </Button>
+
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2 text-ink lg:hidden"
+              >
+                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
+          </nav>
+        </div>
       </header>
 
       <AnimatePresence>
@@ -133,7 +139,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
           >
             <div
               className="absolute inset-0 bg-black/40 backdrop-blur-sm"
@@ -145,8 +151,10 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex flex-col gap-2 rounded-b-4xl border-b border-border bg-surface px-6 pb-8 pt-28"
+              className="relative rounded-b-4xl border-b border-border bg-surface px-6 pb-8 pt-28"
             >
+              {/* Keeps the list from stretching across a tablet */}
+              <div className="mx-auto flex w-full max-w-xl flex-col gap-2 sm:grid sm:grid-cols-2 sm:gap-x-4">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.id}
@@ -172,7 +180,9 @@ export default function Navbar() {
                 </motion.div>
               ))}
 
-              <div className="mt-6 flex items-center justify-between border-t border-border pt-6">
+              </div>
+
+              <div className="mx-auto mt-6 flex w-full max-w-xl items-center justify-between border-t border-border pt-6">
                 <SocialLinks />
                 <ThemeToggle />
               </div>

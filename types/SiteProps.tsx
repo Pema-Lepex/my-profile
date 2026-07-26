@@ -25,10 +25,14 @@ export type Project = {
   year: string;
   category: string;
   description: string;
-  image: StaticImageData;
+  /** Wide screenshot or device mockup of the shipped product. */
+  cover?: StaticImageData;
+  /** Brand mark. Sits on the designed plate when there is no `cover`. */
+  logo?: StaticImageData;
   altText: string;
   tags: string[];
-  url: string;
+  /** Omit when the build is not publicly reachable. */
+  url?: string;
   repoUrl?: string;
   featured?: boolean;
   showcase?: boolean;
@@ -39,8 +43,20 @@ export type Project = {
   highlights?: string[];
 };
 
+export type GalleryAlbumId = "training" | "travel" | "work" | "projects";
+
+export type GalleryAlbum = {
+  id: GalleryAlbumId;
+  label: string;
+  /** Sits under the album filter on the gallery page. */
+  description: string;
+  /** Optional tally printed under the grid. */
+  note?: string;
+};
+
 export type GalleryPhoto = {
   id: string;
+  album: GalleryAlbumId;
   src: StaticImageData;
   altText: string;
   title: string;

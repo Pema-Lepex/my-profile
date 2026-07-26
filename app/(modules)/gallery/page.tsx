@@ -2,9 +2,9 @@ import MainLayout from "@/layouts/MainLayout";
 import MainGallery from "./page/MainGallery";
 
 export const metadata = {
-  title: "Training Gallery",
+  title: "Gallery",
   description:
-    "Photos from the IC3 digital-literacy certification cohorts Pema Lepcha trained for GovTech's Digital Program for Hotels and Homestays in Thimphu, Bhutan.",
+    "Photo albums from Pema Lepcha's work — starting with the IC3 digital-literacy certification cohorts trained for GovTech's Digital Program for Hotels and Homestays in Thimphu, Bhutan.",
 };
 
 const GalleryPage = () => {
