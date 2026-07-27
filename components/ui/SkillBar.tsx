@@ -15,7 +15,7 @@ export function SkillBar({ name, level, index = 0 }: SkillBarProps) {
     <div>
       <div className="mb-2 flex items-baseline justify-between">
         <span className="text-sm font-medium text-ink">{name}</span>
-        <span className="font-mono text-xs text-muted">{level}%</span>
+        {/* <span className="font-mono text-xs text-muted">{level}%</span> */}
       </div>
 
       <div
