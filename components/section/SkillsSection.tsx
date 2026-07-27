@@ -19,7 +19,7 @@ export function SkillsSection({ className }: { className?: string }) {
       <SectionHeading
         eyebrow="Skills"
         title="The tools I reach for"
-        description="A working snapshot of what I use day to day, and how comfortable I am with each."
+        description="The tools I use every day to design, build, and deliver projects."
       />
 
       <Stagger className="grid gap-6 md:grid-cols-2" stagger={0.1}>
