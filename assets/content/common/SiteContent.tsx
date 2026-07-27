@@ -108,10 +108,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "code",
     blurb: "The fundamentals I reach for every day.",
     skills: [
-      { name: "JavaScript", level:0 },
-      { name: "TypeScript", level:0 },
-      { name: "HTML", level:0 },
-      { name: "CSS", level:0 },
+      { name: "JavaScript", level: 100 },
+      { name: "TypeScript", level: 100 },
+      { name: "HTML", level: 100 },
+      { name: "CSS", level: 100 },
     ],
   },
   {
@@ -119,10 +119,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "layers",
     blurb: "How I turn designs into shipped product.",
     skills: [
-      { name: "React.js", level:0 },
-      { name: "Next.js", level:0 },
-      { name: "Tailwind CSS", level:0 },
-      { name: "Responsive Design", level:0 },
+      { name: "React.js", level: 100 },
+      { name: "Next.js", level: 100 },
+      { name: "Tailwind CSS", level: 100 },
+      { name: "Responsive Design", level: 100 },
     ],
   },
   {
@@ -130,10 +130,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "database",
     blurb: "Moving data between server and screen.",
     skills: [
-      { name: "GraphQL & Apollo Client", level:0 },
-      { name: "REST APIs", level:0 },
-      { name: "Redux & Redux Thunk", level:0 },
-      { name: "Node.js", level:0 },
+      { name: "GraphQL & Apollo Client", level: 100 },
+      { name: "REST APIs", level: 100 },
+      { name: "Redux & Redux Thunk", level: 100 },
+      { name: "Node.js", level: 100 },
     ],
   },
   {
@@ -141,10 +141,10 @@ export const skillGroups: SkillGroup[] = [
     icon: "wrench",
     blurb: "The workshop around the code.",
     skills: [
-      { name: "Git & GitHub", level:0 },
-      { name: "VS Code", level:0 },
-      { name: "npm / yarn", level:0 },
-      { name: "Squarespace & SimplyBook", level:0 },
+      { name: "Git & GitHub", level: 100 },
+      { name: "VS Code", level: 100 },
+      { name: "npm / yarn", level: 100 },
+      { name: "Squarespace & SimplyBook", level: 100 },
     ],
   },
 ];
