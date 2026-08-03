@@ -1,5 +1,6 @@
 
 import { StaticImageData } from "next/image";
+import { Url } from "url";
 
 export type NavItem = { id: string; label: string };
 
@@ -73,6 +74,7 @@ export type Certificate = {
   fileUrl: string;
   img?: StaticImageData;
   thumbnailUrl?: StaticImageData;
+  verifiedUrl?: Url | undefined;
 };
 
 export type TimelineEntry = {

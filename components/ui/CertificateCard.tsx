@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Eye, FileText } from "lucide-react";
 import type { Certificate } from "@/types/SiteProps";
 import { Card } from "./Card";
+import Link from "next/link";
 
 type CertificateCardProps = {
   certificate: Certificate;

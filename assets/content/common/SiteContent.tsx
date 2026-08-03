@@ -22,6 +22,8 @@ import {
   ic3May06,
   ic3May06Group,
   ic3May26,
+  JavaScriptExamCertificateFreeCodeCamp,
+  LegacyResponsiveWebDesignV8FreeCodeCamp,
   pemaPortrait,
   profileWebsite,
   rpisLogo,
@@ -724,14 +726,22 @@ export const awards = [
 ];
 
 export const certificates: Certificate[] = [
-  // {
-  //   id: "ic3",
-  //   title: "IC3 Digital Literacy Certification",
-  //   issuer: "GovTech Digital Program",
-  //   year: "2023",
-  //   fileUrl: "/certificates/ic3.pdf",
-  //   thumbnailUrl: ibestLogo,
-  // },
+  {
+    id: "certi1",
+    title: "Legacy Responsive Web Design V8",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    fileUrl: "/certificates/LegacyResponsiveWebDesignV8DFreecodecamp.pdf",
+    thumbnailUrl: LegacyResponsiveWebDesignV8FreeCodeCamp,
+  },
+  {
+    id: "certi2",
+    title: "JavaScript Exam Certificate",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    fileUrl: "/certificates/JavaScriptExamCertificateFreecodecamp.pdf",
+    thumbnailUrl: JavaScriptExamCertificateFreeCodeCamp,
+  },
 ];
 
 export const contact = {
