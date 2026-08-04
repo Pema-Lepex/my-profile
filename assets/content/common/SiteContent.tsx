@@ -26,6 +26,7 @@ import {
   LegacyResponsiveWebDesignV8FreeCodeCamp,
   pemaPortrait,
   profileWebsite,
+  ResponsiveWebDesignFreeCodeCamp,
   rpisLogo,
   travel01,
   travel02,
@@ -741,6 +742,14 @@ export const certificates: Certificate[] = [
     year: "2026",
     fileUrl: "/certificates/JavaScriptExamCertificateFreecodecamp.pdf",
     thumbnailUrl: JavaScriptExamCertificateFreeCodeCamp,
+  },
+  {
+    id: "certi3",
+    title: "Responsive Web Design Exam Certificate",
+    issuer: "freeCodeCamp",
+    year: "2026",
+    fileUrl: "/certificates/ResponsiveWebDesignFreecodecamp.pdf",
+    thumbnailUrl: ResponsiveWebDesignFreeCodeCamp,
   },
 ];
 
