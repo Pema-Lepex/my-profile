@@ -1,6 +1,5 @@
 
 import { StaticImageData } from "next/image";
-import { Url } from "url";
 
 export type NavItem = { id: string; label: string };
 
@@ -44,7 +43,7 @@ export type Project = {
   highlights?: string[];
 };
 
-export type GalleryAlbumId = "training" | "travel" | "work" | "projects";
+export type GalleryAlbumId = "training" | "travel" | "work" | "projects" | "wsis";
 
 export type GalleryAlbum = {
   id: GalleryAlbumId;
@@ -74,7 +73,8 @@ export type Certificate = {
   fileUrl: string;
   img?: StaticImageData;
   thumbnailUrl?: StaticImageData;
-  verifiedUrl?: Url | undefined;
+  /** Public verification link for the credential, when the issuer offers one. */
+  verifiedUrl?: string;
 };
 
 export type TimelineEntry = {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { profile } from "@/assets/content/common/SiteContent";
 import { useActiveSection } from "@/utils/hooks";
 import { Button, SocialLinks, ThemeToggle } from "@/components/ui";
@@ -123,7 +123,7 @@ export default function Navbar() {
                 onClick={() => setOpen((v) => !v)}
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
-                className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2 text-ink lg:hidden"
+                className="grid h-11 w-11 place-items-center rounded-full border border-border bg-surface-2 text-ink lg:hidden"
               >
                 {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>

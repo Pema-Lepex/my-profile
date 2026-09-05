@@ -24,13 +24,14 @@ import {
   ic3May26,
   JavaScriptExamCertificateFreeCodeCamp,
   LegacyResponsiveWebDesignV8FreeCodeCamp,
+  mindfulnessGuide,
   pemaPortrait,
   profileWebsite,
   ResponsiveWebDesignFreeCodeCamp,
   rpisLogo,
-  travel01,
-  travel02,
-  travel03,
+  wsisprogram1,
+  wsisprogram2,
+  wsisprogram3,
 } from "@/assets";
 import type {
   Certificate,
@@ -351,6 +352,7 @@ export const projects: Project[] = [
     category: "Client · Australia",
     description:
       "Engineered a high-performance frontend for an international wellness app, focusing on clean code and smooth UI transitions for a global audience.",
+    cover: mindfulnessGuide,
     altText: "MindFullness Guide project",
     tags: ["Squarespace", "SimplyBook", "Animation"],
     role: "Frontend Developer",
@@ -409,6 +411,12 @@ export const galleryAlbums: GalleryAlbum[] = [
     id: "projects",
     label: "Projects",
     description: "Work in progress — screens, sketches, and things mid-build.",
+  },
+  {
+    id: "wsis",
+    label: "WSIS",
+    description:
+      "Certificate days from the WSIS program in Thimphu — three batches, photographed with their certificates.",
   },
 ];
 
@@ -557,41 +565,39 @@ export const galleryPhotos: GalleryPhoto[] = [
     note: "An evening batch — the clock had gone past six and nobody moved until every certificate was in a hand.",
   },
 
-  /* ---------------------------------------------------------------- */
-  /* Travel — dates and locations are guesses; correct them as you go. */
-  /* ---------------------------------------------------------------- */
+  // wsis program
   {
-    id: "travel-01",
-    album: "travel",
-    src: travel01,
-    date: "2025-11-22",
-    title: "Somewhere new, phone out",
-    location: "On the road",
+    id: "wsisprogram1",
+    album: "wsis",
+    src: wsisprogram1,
+    date: "2026-08-17",
+    title: "WSIS Program 1",
+    location: "Thimphu",
     altText:
-      "Two travellers with backpacks looking at a phone together on a sunlit city street",
-    note: "Two heads, one screen, and no real idea which way the street runs.",
+      "Participants of the WSIS program holding certificates in front of a backdrop",
+    note: "The first batch of the WSIS program, marking a significant milestone.",
   },
   {
-    id: "travel-02",
-    album: "travel",
-    src: travel02,
-    date: "2025-10-05",
-    title: "Paper beats signal",
-    location: "On the road",
+    id: "wsisprogram2",
+    album: "wsis",
+    src: wsisprogram2,
+    date: "2026-08-17",
+    title: "WSIS Program 2",
+    location: "Thimphu",
     altText:
-      "Two travellers with backpacks reading a paper map at a busy city crossing",
-    note: "The map came out the moment the signal did not.",
+      "Participants of the WSIS program holding certificates in front of a backdrop",
+    note: "The second batch of the WSIS program, building on the success of the first.",
   },
   {
-    id: "travel-03",
-    album: "travel",
-    src: travel03,
-    date: "2025-08-17",
-    title: "Above the cloud line",
-    location: "On the road",
+    id: "wsisprogram3",
+    album: "wsis",
+    src: wsisprogram3,
+    date: "2026-08-17",
+    title: "WSIS Program 3",
+    location: "Thimphu",
     altText:
-      "A traveller in a wide-brimmed hat sitting on a dry ridge, looking out over a sea of cloud",
-    note: "The part of the walk where you stop, sit down, and let the view do the talking.",
+      "Participants of the WSIS program holding certificates in front of a backdrop",
+    note: "The third batch of the WSIS program, continuing the journey of digital empowerment.",
   },
 ];
 

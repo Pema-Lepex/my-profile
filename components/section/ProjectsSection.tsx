@@ -5,11 +5,16 @@ import { projects } from "@/assets/content/common/SiteContent";
 import {
   Button,
   ProjectCard,
-  ProjectFeature,
+  ProjectShowcase,
   Section,
   SectionHeading,
 } from "@/components/ui";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import {
+  CursorReveal,
+  Reveal,
+  Stagger,
+  StaggerItem,
+} from "@/components/motion";
 
 type ProjectsSectionProps = {
   className?: string;
@@ -21,11 +26,13 @@ type ProjectsSectionProps = {
   showLogos?: boolean;
 };
 
-/** Headline work gets the wide treatment; everything else sits in the grid. */
+/** Headline work gets the full-bleed spread; everything else sits in the grid. */
 function split(list: typeof projects) {
   const lead = list.filter((project) => project.featured);
   const rest = list.filter((project) => !project.featured);
-  return lead.length > 0 ? { lead, rest } : { lead: list.slice(0, 1), rest: list.slice(1) };
+  return lead.length > 0
+    ? { lead, rest }
+    : { lead: list.slice(0, 1), rest: list.slice(1) };
 }
 
 export function ProjectsSection({
@@ -43,8 +50,8 @@ export function ProjectsSection({
     : projects;
 
   const { lead, rest } = split(visible);
-  const leadRows = isPreview ? lead.slice(0, 1) : lead;
-  const gridItems = isPreview ? [...lead.slice(1), ...rest] : rest;
+  const gridItems = isPreview ? [...lead.slice(2), ...rest] : rest;
+  const showcaseRows = isPreview ? lead.slice(0, 2) : lead;
   const hidden = projects.length - visible.length;
 
   const liveCount = projects.filter((project) => project.url).length;
@@ -54,67 +61,76 @@ export function ProjectsSection({
   );
 
   return (
-    <Section id="projects" tinted className={className}>
-      <SectionHeading
-        eyebrow="Projects"
-        title="Things I have built"
-        description={
-          isPreview
-            ? "A selection of production work and side projects. Each one taught me something I still use."
-            : "Everything I have shipped — what I worked on, who it was for, and what came out of it."
-        }
+    <Section id="projects" tinted width="full" className={className}>
+      {/* Sits above the section fill and below the content (-z-10), so the
+          window only ever shows in the space between the spreads. */}
+      <CursorReveal
+        src="/videos/reveal-loop.mp4"
+        poster="/videos/reveal-loop-poster.jpg"
       />
 
-      {!isPreview && (
-        <Reveal className="mx-auto mb-14 grid max-w-3xl grid-cols-3 divide-x divide-border overflow-hidden rounded-2xl border border-border bg-surface">
-          {[
-            { value: `${projects.length}`, label: "Projects shipped" },
-            { value: `${liveCount}`, label: "Live in production" },
-            { value: earliest, label: "Building since" },
-          ].map((stat) => (
-            <div key={stat.label} className="px-4 py-5 text-center">
-              <p className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                {stat.value}
-              </p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </Reveal>
-      )}
+      {/* Heading stays on the text measure even though the rows run wide */}
+      <div className="mx-auto w-full max-w-[88rem] px-6 lg:px-10">
+        <SectionHeading
+          index="03"
+          eyebrow="Projects"
+          title="Things I have built"
+          description={
+            isPreview
+              ? "A selection of production work and side projects. Each one taught me something I still use."
+              : "Everything I have shipped — what I worked on, who it was for, and what came out of it."
+          }
+          aside={
+            <dl className="flex gap-8">
+              {[
+                { value: `${projects.length}`, label: "Shipped" },
+                { value: `${liveCount}`, label: "Live" },
+                { value: earliest, label: "Since" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          }
+        />
+      </div>
 
-      {leadRows.length > 0 && (
-        <div className="mb-6 space-y-6">
-          {leadRows.map((project, index) => (
-            <Reveal key={project.id}>
-              <ProjectFeature
-                project={project}
-                reverse={index % 2 === 1}
-                detailed={!isPreview}
-                showLogo={showLogos}
-                eager={index === 0}
-              />
-            </Reveal>
+      {/* ---- Full-bleed spreads ------------------------------------------ */}
+      {showcaseRows.length > 0 && (
+        <div className="space-y-24 lg:space-y-36">
+          {showcaseRows.map((project, index) => (
+            <ProjectShowcase
+              key={project.id}
+              project={project}
+              index={index}
+              reverse={index % 2 === 1}
+              showLogo={showLogos}
+              eager={index === 0}
+            />
           ))}
         </div>
       )}
 
+      {/* ---- The rest, back on the grid ----------------------------------- */}
       {gridItems.length > 0 && (
-        <>
-          {!isPreview && (
-            <Reveal className="mb-6 mt-16 flex items-center gap-4">
-              <h3 className="font-display text-xl font-semibold tracking-tight text-ink">
-                More work
-              </h3>
-              <span aria-hidden className="h-px flex-1 bg-border" />
-              <span className="font-mono text-xs text-muted">
-                {gridItems.length} projects
-              </span>
-            </Reveal>
-          )}
+        <div className="mx-auto mt-24 w-full max-w-[88rem] px-6 lg:mt-36 lg:px-10">
+          <Reveal className="mb-8 flex items-center gap-5">
+            <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">
+              More work
+            </h3>
+            <span aria-hidden className="h-px flex-1 bg-border" />
+            <span className="font-mono text-xs text-muted">
+              {gridItems.length} projects
+            </span>
+          </Reveal>
 
-          <Stagger className="grid gap-6 md:grid-cols-2" stagger={0.1}>
+          <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-3" stagger={0.09}>
             {gridItems.map((project) => (
               <StaggerItem key={project.id} className="h-full">
                 <ProjectCard
@@ -125,11 +141,11 @@ export function ProjectsSection({
               </StaggerItem>
             ))}
           </Stagger>
-        </>
+        </div>
       )}
 
       {isPreview && hidden > 0 && (
-        <Reveal className="mt-12 text-center">
+        <Reveal className="mt-20 text-center">
           <Button
             href="/projects"
             variant="secondary"

@@ -4,14 +4,13 @@ import { useState } from "react";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { certificates } from "@/assets/content/common/SiteContent";
 import {
-  Button,
-  Card,
   CertificateCard,
   CertificateModal,
   Section,
   SectionHeading,
 } from "@/components/ui";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal, Stagger, StaggerItem, Tilt } from "@/components/motion";
+import Link from "next/link";
 
 type CertificatesSectionProps = {
   className?: string;
@@ -35,83 +34,92 @@ export function CertificatesSection({
     .at(-1);
 
   return (
-    <Section id="certificates" className={className}>
+    <Section id="certificates" width="wide" className={className}>
       <SectionHeading
+        index="06"
         eyebrow="Certificates"
         title="Proof of the work"
         description={
           isPreview
             ? "Certifications and recognitions I have earned, with the documents to back them up."
-            : "Certifications and recognitions I have earned. Click any card to read the document."
+            : "Certifications and recognitions I have earned. Open any card to read the document."
+        }
+        aside={
+          <dl className="flex gap-8">
+            {[
+              { value: count, label: count === 1 ? "Certificate" : "Certificates" },
+              { value: issuers, label: issuers === 1 ? "Issuer" : "Issuers" },
+              { value: latest, label: "Most recent" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                  {stat.label}
+                </dt>
+                <dd className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink">
+                  {stat.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         }
       />
 
       {isPreview ? (
-        <Reveal>
-          <Card
-            spotlight
-            interactive
-            className="mx-auto max-w-3xl overflow-hidden p-8 text-center sm:p-12"
-          >
-            <span
-              aria-hidden
-              className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-border bg-surface-2 text-brand-600 dark:text-brand-400"
-            >
-              <BadgeCheck className="h-6 w-6" />
-            </span>
+        <>
+          {/* A ruled index rather than a boxed summary — same editorial voice
+              as the contact channel list, and it names every credential
+              instead of just counting them. */}
+          <Stagger className="border-t border-border" stagger={0.08}>
+            {certificates.map((certificate) => (
+              <StaggerItem key={certificate.id} distance={16}>
+                <div className="group flex items-center gap-6 border-b border-border py-6">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-500/12 text-brand-600 transition-transform duration-500 group-hover:scale-110 dark:text-brand-400">
+                    <BadgeCheck className="h-5 w-5" />
+                  </span>
 
-            <dl className="mt-8 grid grid-cols-3 gap-4">
-              {[
-                {
-                  value: count,
-                  label: count === 1 ? "Certificate" : "Certificates",
-                },
-                { value: issuers, label: issuers === 1 ? "Issuer" : "Issuers" },
-                { value: latest, label: "Most recent" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <dt className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                    {stat.value}
-                  </dt>
-                  <dd className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-                    {stat.label}
-                  </dd>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-display text-lg font-semibold tracking-tight text-ink">
+                      {certificate.title}
+                    </p>
+                    <p className="mt-1 text-sm text-muted">
+                      {certificate.issuer}
+                    </p>
+                  </div>
+
+                  <span className="shrink-0 font-mono text-xs text-muted">
+                    {certificate.year}
+                  </span>
                 </div>
-              ))}
-            </dl>
+              </StaggerItem>
+            ))}
+          </Stagger>
 
-            <ul className="mx-auto mt-8 max-w-md space-y-1.5">
-              {certificates.map((certificate) => (
-                <li
-                  key={certificate.id}
-                  className="text-sm leading-relaxed text-muted"
-                >
-                  <span className="text-ink-soft">{certificate.title}</span>
-                  {" — "}
-                  {certificate.issuer}
-                </li>
-              ))}
-            </ul>
-
-            <Button
+          <Reveal delay={0.1} className="mt-12">
+            <Link
               href="/certificates"
-              size="lg"
-              className="mt-7"
-              icon={<ArrowRight className="h-4 w-4" />}
+              className="group inline-flex items-center gap-3 font-display text-lg font-semibold text-ink transition-colors hover:text-brand-700 dark:hover:text-brand-400"
             >
-              View certificates
-            </Button>
-          </Card>
-        </Reveal>
+              View the certificates
+              <span className="grid h-9 w-9 place-items-center rounded-full border border-border transition-all duration-500 group-hover:border-brand-400 group-hover:bg-brand-600 group-hover:text-white">
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+            <p className="mt-3 font-mono text-xs text-muted">
+              Each one opens as the original document.
+            </p>
+          </Reveal>
+        </>
       ) : (
         <>
-          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" stagger={0.09}>
             {certificates.map((certificate, i) => (
-              <StaggerItem key={certificate.id}>
-                <CertificateCard
-                  certificate={certificate}
-                  onView={() => setOpenIndex(i)}
-                />
+              <StaggerItem key={certificate.id} className="h-full">
+                <Tilt className="h-full" max={6}>
+                  <CertificateCard
+                    certificate={certificate}
+                    onView={() => setOpenIndex(i)}
+                  />
+                </Tilt>
               </StaggerItem>
             ))}
           </Stagger>

@@ -91,7 +91,9 @@ export function ProjectMedia({
   return (
     <div
       className={cn(
-        "relative h-full w-full overflow-hidden bg-[linear-gradient(150deg,#141b31_0%,#0a0f1e_45%,#06090f_100%)]",
+        // Warm charcoal, mirroring the dark-mode surfaces. This plate stays dark
+        // in both themes, so it is a literal rather than a token.
+        "relative h-full w-full overflow-hidden bg-[linear-gradient(150deg,#26262e_0%,#0f0f13_45%,#060607_100%)]",
         className,
       )}
     >

@@ -9,8 +9,8 @@ export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggle, mounted } = useTheme();
 
   const shell = cn(
-    "relative grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2 text-ink",
-    "transition-colors hover:border-brand-400 hover:text-brand-600 dark:hover:text-brand-400",
+    "relative grid h-11 w-11 place-items-center rounded-full border border-border bg-surface-2 text-ink",
+    "transition-colors hover:border-brand-400 hover:text-brand-700 dark:hover:text-brand-400",
     className,
   );
 

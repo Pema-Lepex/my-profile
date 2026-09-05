@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0f1e" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0c" },
   ],
 };
 
@@ -68,9 +68,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    /* `data-scroll-behavior`: Next 16 stopped overriding scroll-behaviour on
+       navigation. Opting back in keeps in-page anchors gliding while route
+       changes still jump straight to the top. */
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${sora.variable} ${jetbrains.variable}`}
     >
       <body className="font-sans antialiased">

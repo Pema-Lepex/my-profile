@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Eye, FileText } from "lucide-react";
 import type { Certificate } from "@/types/SiteProps";
 import { Card } from "./Card";
-import Link from "next/link";
 
 type CertificateCardProps = {
   certificate: Certificate;
@@ -42,7 +41,7 @@ export function CertificateCard({
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-brand-500/10">
               <FileText
-                className="h-10 w-10 text-brand-600/70 dark:text-brand-400/70"
+                className="h-10 w-10 text-brand-700/70 dark:text-brand-400/70"
                 aria-hidden
               />
             </div>

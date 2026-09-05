@@ -4,20 +4,20 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import {
   galleryAlbums,
   galleryPhotos,
   type GalleryAlbumId,
 } from "@/assets/content/common/SiteContent";
 import {
-  Card,
   GalleryCard,
   GalleryLightbox,
   Section,
   SectionHeading,
 } from "@/components/ui";
 import { cn } from "@/utils/helpers/cn";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { formatPhotoRange } from "@/utils/helpers/formatPhotoDate";
 
 type GallerySectionProps = {
@@ -27,13 +27,25 @@ type GallerySectionProps = {
 
 type Filter = GalleryAlbumId | "all";
 
-const PREVIEW_COUNT = 4;
+const PREVIEW_COUNT = 5;
 
 /** The page opens on the first album that has photos in it, not on "All". */
 const DEFAULT_FILTER: Filter =
   galleryAlbums.find((album) =>
     galleryPhotos.some((photo) => photo.album === album.id),
   )?.id ?? "all";
+
+/**
+ * Editorial rhythm on a 6-column grid: two wide tiles, then three narrow, then
+ * repeat. Rows always total six, so nothing is left hanging, and the eye never
+ * settles into scanning a uniform table.
+ */
+function tile(index: number) {
+  const step = index % 5;
+  return step === 0 || step === 1
+    ? { className: "sm:col-span-2 lg:col-span-3", wide: true }
+    : { className: "lg:col-span-2", wide: false };
+}
 
 export function GallerySection({
   className,
@@ -76,88 +88,128 @@ export function GallerySection({
       ? formatPhotoRange(visible.at(-1)!.date, visible[0].date)
       : "";
 
+  /* ---------------------------------------------------------------- */
+  /* Preview — a mosaic that reads as a spread, not a card             */
+  /* ---------------------------------------------------------------- */
   if (isPreview) {
     const tiles = photos.slice(0, PREVIEW_COUNT);
     const remaining = photos.length - tiles.length;
 
     return (
-      <Section id="gallery" tinted className={className}>
+      <Section id="gallery" tinted width="wide" className={className}>
         <SectionHeading
+          index="05"
           eyebrow="Gallery"
           title="Photos from the work"
           description="Moments from around the job, kept in albums. Training cohorts to start with — travel, work, and project albums as I add them."
+          aside={
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+              {photos.length} photos
+              <span className="mx-2 text-border">/</span>
+              {albums.length} {albums.length === 1 ? "album" : "albums"}
+            </p>
+          }
         />
 
-        <Reveal>
-          <Link
-            href="/gallery"
-            aria-label={`Open the gallery page — ${photos.length} photos`}
-            className="group mx-auto block max-w-4xl focus-visible:outline-none"
-          >
-            <Card spotlight interactive className="overflow-hidden">
-              <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-4">
-                {tiles.map((photo, index) => (
-                  <div
-                    key={photo.id}
-                    className="relative aspect-4/3 overflow-hidden bg-surface-2"
+        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6" stagger={0.08}>
+          {tiles.map((photo, index) => {
+            const { className: span, wide } = tile(index);
+            const isLast = index === tiles.length - 1;
+
+            return (
+              <StaggerItem key={photo.id} className={span}>
+                {/* Alternating drift gives the mosaic depth as it scrolls */}
+                <Parallax y={index % 2 === 0 ? -14 : 10}>
+                  <Link
+                    href="/gallery"
+                    aria-label={`Open the gallery — ${photo.title}`}
+                    className={cn(
+                      "group relative block w-full overflow-hidden rounded-3xl border border-border bg-surface-2",
+                      "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                      "hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-2xl hover:shadow-brand-500/10",
+                      "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500",
+                      wide ? "aspect-16/10" : "aspect-4/3",
+                    )}
                   >
                     <Image
                       src={photo.src}
                       alt={photo.altText}
                       placeholder="blur"
-                      sizes="(max-width: 640px) 50vw, 240px"
+                      sizes={wide ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 50vw, 380px"}
                       className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                     />
-                    {index === tiles.length - 1 && remaining > 0 && (
-                      <span className="absolute inset-0 grid place-items-center bg-ink/65 font-display text-xl font-semibold text-white backdrop-blur-[2px]">
-                        +{remaining}
+
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent"
+                    />
+
+                    {isLast && remaining > 0 ? (
+                      <span className="absolute inset-0 grid place-items-center bg-ink/60 backdrop-blur-[2px]">
+                        <span className="font-display text-3xl font-semibold text-white">
+                          +{remaining}
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="absolute inset-x-0 bottom-0 p-5 text-left">
+                        <span className="block font-display text-base font-semibold tracking-tight text-white">
+                          {photo.title}
+                        </span>
                       </span>
                     )}
-                  </div>
-                ))}
-              </div>
+                  </Link>
+                </Parallax>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
 
-              <div className="flex flex-wrap items-center justify-between gap-5 border-t border-border p-6 sm:p-7">
-                <div className="min-w-0">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">
-                    {albums.map((album) => album.label).join(" · ")} ·{" "}
-                    {photos.length} photos
-                  </p>
-                  <p className="mt-2 font-display text-lg font-semibold tracking-tight text-ink">
-                    Open the photo gallery
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    Takes you to the gallery page, where the photos are grouped
-                    by album and open full size.
-                  </p>
-                </div>
-
-                <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-brand-500/25 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:bg-brand-700 group-hover:shadow-xl group-hover:shadow-brand-500/40">
-                  View the gallery
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </span>
-              </div>
-            </Card>
+        <Reveal delay={0.1} className="mt-12">
+          <Link
+            href="/gallery"
+            className="group inline-flex items-center gap-3 font-display text-lg font-semibold text-ink transition-colors hover:text-brand-700 dark:hover:text-brand-400"
+          >
+            Open the photo gallery
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-border transition-all duration-500 group-hover:border-brand-400 group-hover:bg-brand-600 group-hover:text-white">
+              <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5" />
+            </span>
           </Link>
+          <p className="mt-3 font-mono text-xs text-muted">
+            Grouped by album, every photo opens full size.
+          </p>
         </Reveal>
       </Section>
     );
   }
 
+  /* ---------------------------------------------------------------- */
+  /* Full page                                                        */
+  /* ---------------------------------------------------------------- */
   return (
-    <Section id="gallery" tinted className={className}>
+    <Section id="gallery" tinted width="wide" className={className}>
       <SectionHeading
+        index="05"
         eyebrow="Gallery"
         title="Photos from the work"
         description="Photographs from around the job, grouped into albums. Pick one below, or open any photo full size."
+        aside={
+          <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+            {visible.length} showing
+            <span className="mx-2 text-border">/</span>
+            {range}
+          </p>
+        }
       />
 
-      <Reveal className="mb-12">
-        {albums.length > 1 && (
+      {albums.length > 1 && (
+        <Reveal className="mb-10">
+          {/* A filter set, not tabs: `role="tab"` needs owned tabpanels and
+              arrow-key roving focus, neither of which exists here. Toggle
+              buttons with aria-pressed describe this control honestly. */}
           <div
-            role="tablist"
-            aria-label="Photo albums"
-            className="mb-6 flex flex-wrap justify-center gap-2"
+            role="group"
+            aria-label="Filter photos by album"
+            className="flex flex-wrap gap-2"
           >
             {([...albums, { id: "all", label: "All" }] as const).map((album) => {
               const id = album.id as Filter;
@@ -171,19 +223,25 @@ export function GallerySection({
                 <button
                   key={id}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
+                  aria-pressed={active}
                   onClick={() => {
                     setFilter(id);
                     setOpenIndex(null);
                   }}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                    "relative inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors duration-300",
                     active
-                      ? "border-brand-600 bg-brand-600 text-white shadow-lg shadow-brand-500/25"
+                      ? "border-transparent text-white"
                       : "border-border bg-surface text-muted hover:border-brand-400 hover:text-ink",
                   )}
                 >
+                  {active && (
+                    <motion.span
+                      layoutId="gallery-filter-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-brand-600"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
                   {album.label}
                   <span
                     className={cn(
@@ -197,47 +255,38 @@ export function GallerySection({
               );
             })}
           </div>
-        )}
 
-        <div className="mx-auto max-w-2xl text-center">
           {activeAlbum && (
-            <>
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400">
-                {activeAlbum.label}
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-muted">
-                {activeAlbum.description}
-              </p>
-            </>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
+              {activeAlbum.description}
+            </p>
           )}
-          <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-            {visible.length} photos · {range}
-          </p>
-        </div>
-      </Reveal>
+        </Reveal>
+      )}
 
+      {/* key={filter} remounts the list so a new album staggers in */}
       <Stagger
         key={filter}
-        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        stagger={0.07}
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6"
+        stagger={0.06}
       >
-        {visible.map((photo, i) => (
-          <StaggerItem
-            key={photo.id}
-            className={i === 0 || i === 5 ? "sm:col-span-2" : undefined}
-          >
-            <GalleryCard
-              photo={photo}
-              index={i}
-              wide={i === 0 || i === 5}
-              onOpen={() => setOpenIndex(i)}
-            />
-          </StaggerItem>
-        ))}
+        {visible.map((photo, i) => {
+          const { className: span, wide } = tile(i);
+          return (
+            <StaggerItem key={photo.id} className={span}>
+              <GalleryCard
+                photo={photo}
+                index={i}
+                wide={wide}
+                onOpen={() => setOpenIndex(i)}
+              />
+            </StaggerItem>
+          );
+        })}
       </Stagger>
 
       {activeAlbum?.note && (
-        <Reveal className="mt-10 text-center">
+        <Reveal className="mt-10">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
             {activeAlbum.note}
           </p>

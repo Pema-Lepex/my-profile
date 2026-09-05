@@ -5,8 +5,10 @@ import {
   ExperienceSection,
   GallerySection,
   HeroSection,
+  IdentityBand,
   ProjectsSection,
   SkillsSection,
+  StatementSection,
 } from "@/components/section";
 
 const MainHome: React.FC = () => {
@@ -14,8 +16,10 @@ const MainHome: React.FC = () => {
     <>
       <HeroSection />
       <AboutSection />
+      <StatementSection />
       <SkillsSection />
       <ProjectsSection />
+      <IdentityBand />
       <ExperienceSection />
       <GallerySection />
       <CertificatesSection />

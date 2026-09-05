@@ -1,7 +1,9 @@
 export { HeroSection } from "./HeroSection";
 export { AboutSection } from "./AboutSection";
+export { StatementSection } from "./StatementSection";
 export { SkillsSection } from "./SkillsSection";
 export { ProjectsSection } from "./ProjectsSection";
+export { IdentityBand } from "./IdentityBand";
 export { ExperienceSection } from "./ExperienceSection";
 export { GallerySection } from "./GallerySection";
 export { CertificatesSection } from "./CertificatesSection";

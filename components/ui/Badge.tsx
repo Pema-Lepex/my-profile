@@ -13,7 +13,7 @@ export function Badge({ children, className, variant = "default" }: BadgeProps) 
       className={cn(
         "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium",
         variant === "brand"
-          ? "border-brand-500/30 bg-brand-500/10 text-brand-600 dark:text-brand-300"
+          ? "border-brand-500/30 bg-brand-500/10 text-brand-700 dark:text-brand-300"
           : "border-border bg-surface-2 text-muted",
         className,
       )}

@@ -1,7 +1,16 @@
-export { Reveal } from "./Reveal";
+export { EASE, EASE_SOFT, SPRING, SPRING_SOFT } from "./config";
+export { Reveal, MaskReveal } from "./Reveal";
 export { Stagger, StaggerItem } from "./Stagger";
 export { Magnetic } from "./Magnetic";
 export { Counter } from "./Counter";
 export { TextReveal } from "./TextReveal";
 export { ScrollProgress } from "./ScrollProgress";
 export { Spotlight } from "./Spotlight";
+export { Parallax } from "./Parallax";
+export { ScrollHighlight } from "./ScrollHighlight";
+export { Tilt } from "./Tilt";
+export { VelocityMarquee } from "./VelocityMarquee";
+export { ScrollLine } from "./ScrollLine";
+export { CursorGlow } from "./CursorGlow";
+export { CursorReveal } from "./CursorReveal";
+export { SectionNav } from "./SectionNav";

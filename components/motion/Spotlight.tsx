@@ -14,7 +14,9 @@ export function Spotlight({ children, className, size = 380 }: SpotlightProps) {
   const mouseX = useMotionValue(-9999);
   const mouseY = useMotionValue(-9999);
 
-  const background = useMotionTemplate`radial-gradient(${size}px circle at ${mouseX}px ${mouseY}px, rgb(37 99 235 / 0.14), transparent 70%)`;
+  // Colour comes from --spotlight so the glow follows the theme; it was
+  // previously a hardcoded blue that no longer matched the brand.
+  const background = useMotionTemplate`radial-gradient(${size}px circle at ${mouseX}px ${mouseY}px, var(--spotlight), transparent 70%)`;
 
   return (
     <div
